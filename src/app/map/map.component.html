@@ -1,8 +1,7 @@
+<div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale)}">
+<div class="char" [ngStyle]="{'left.px':this.Hero.Loc.locA_X*scale,'top.px': this.Hero.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
+<div class="char" [ngStyle]="{'left.px':this.Mob.Loc.locA_X*scale,'top.px': this.Mob.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{Mob.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
+</div>
+<div class="info">{{this.Hero.Loc.locA_X+"/"+this.Hero.Loc.locA_Y+" =======>"+totalSecondes}}</div>
 
 
-
-<div class="char" [ngStyle]="{'top.px': this.character}">X</div>
-
-
-
-<div class="info">{{this.character}}</div>

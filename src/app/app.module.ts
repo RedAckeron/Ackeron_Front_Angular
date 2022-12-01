@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    MapComponent
-  ],
+    MapComponent,
+    HomeComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
