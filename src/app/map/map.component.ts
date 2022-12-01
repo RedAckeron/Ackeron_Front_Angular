@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
       Mob = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
       Areas!:Area[];
       planet =new Planet(0,'',50,40,[]);
-      scale=16;
+      scale=32;
       totalSecondes : number = 0;
       timer : any = undefined;
 
@@ -63,4 +63,9 @@ play() : void {
     this.totalSecondes ++;
         } , 1000);
     }
+SetTarget()
+{
+  console.log("Target defini");
+  
+}
 }

@@ -1,6 +1,12 @@
 <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale)}">
     <!-- Affichage des elements du decor -->
-    <div *ngFor="let item of planet.Areas" class="{{item.name}}" [ngStyle]="{'left.px':item.locX*scale,'top.px': item.locY*scale}"></div>
+    <div *ngFor="let item of planet.Areas">
+        <div class="{{item.name}}" [ngStyle]="{'left.px':item.locX*scale,'top.px': item.locY*scale}">
+            <div (click)="SetTarget()">
+            <img src="/assets/gif/item/{{item.name}}.gif" width={{scale}} alt="{{item.name}}">
+            </div>
+        </div>
+    </div>
     <!-- Affichage des Hero -->
     <div class="char" [ngStyle]="{'left.px':this.Hero.Loc.locA_X*scale,'top.px': this.Hero.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
     <!-- Affichage des mobs -->
