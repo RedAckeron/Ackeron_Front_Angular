@@ -12,7 +12,6 @@ export class MapRepoService {
   constructor(private _httpClient: HttpClient) { }
 
   GetMap(IdPlanet: number): Observable<Area[]> {
-    return this._httpClient.get<Area[]>(this._url + "map/GetMap/" + IdPlanet);
+    return this._httpClient.get<Area[]>(this._url + "map/GetMap/" + IdPlanet);    
   }
-
 }

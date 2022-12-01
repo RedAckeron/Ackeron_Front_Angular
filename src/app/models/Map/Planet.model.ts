@@ -1,8 +1,13 @@
+import { HttpClient } from "@angular/common/http";
+import { MapRepoService } from "src/app/repositories/map-repo.service";
+import { Area } from "./Area.model";
+
 export class Planet {
     IdPlanet:number;
     Name:string;
     MaxX:number;
     MaxY:number;
+    Areas : Area[];
     /*
     LocX:number;
     LocY:number;
@@ -12,11 +17,12 @@ export class Planet {
     SubTrigger:string;
    */
   /*,LocX:number,LocY:number,ImgItem:string,Reachable:boolean,MainTrigger:string,SubTrigger:string*/
-    constructor(id : number,Name:string,MaxX:number,MaxY:number){
+    constructor(id : number,Name:string,MaxX:number,MaxY:number,Areas:Area[]){
         this.IdPlanet = id;
         this.Name=Name;
         this.MaxX=MaxX;
         this.MaxY=MaxY;
+        this.Areas=Areas;
         
         /*
         this.LocX=LocX;
@@ -27,6 +33,7 @@ export class Planet {
         this.SubTrigger=SubTrigger;
         */
     }
+
 }
 
 
