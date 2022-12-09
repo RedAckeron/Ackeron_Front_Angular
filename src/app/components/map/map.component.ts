@@ -1,13 +1,13 @@
-import { JsonPipe, LocationStrategy } from '@angular/common';
+import { JsonPipe, LocationStrategy, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { pipe } from 'rxjs';
-import { Character, CharacterLoc } from '../models/Character';
-import { Area } from '../models/Map/Area.model';
-import { Planet } from '../models/Map/Planet.model';
-import { MapRepoService } from '../repositories/map-repo.service';
-import { CharacterService } from '../services/character.service';
-import { MapService } from '../services/map.service';
-import { MathService } from '../services/math.service';
+import { Character, CharacterLoc } from 'src/app/models/Character';
+import { Area } from 'src/app/models/Map/Area.model';
+import { Planet } from 'src/app/models/Map/Planet.model';
+import { MapRepoService } from 'src/app/repositories/map-repo.service';
+import { CharacterService } from 'src/app/services/character.service';
+import { MathService } from 'src/app/services/math.service';
+
 
 @Component({
   selector: 'app-map',
@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
       Hero = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
       Mob = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
       Areas!:Area[];
-      planet =new Planet(0,'',50,40,[]);
+      planet =new Planet(0,'',20,20,[]);
       scale=32;
       totalSecondes : number = 0;
       timer : any = undefined;
@@ -31,12 +31,13 @@ ngOnInit(): void {
     this.play();
 }
 
-
 GetMap(IdPlanet: number):Area[]{
   let TabArea! : Area[];
   this._mapRepo.GetMap(IdPlanet).subscribe( {
     next: (res) => {
       TabArea=res;
+      console.log(res);
+      
       return TabArea;
       },
     error: () => {},

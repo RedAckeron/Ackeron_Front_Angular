@@ -14,20 +14,18 @@
     50%  {background-color: blue;}
     100% {background-color: green;}
   }
-  
 
-
-
-
-.map{
+  .map{
     position: relative;
-   
-    background-image: url('./../../assets/gif/bground/sand.gif');  
+    background-image: url('../../../assets/gif/bground/sand.gif');  
+    background-size: cover;
     border:solid 1px;
 }
+
 .info{
     background-color:pink ;
 }
+
 .RockGreen{
     position:absolute;
     width:16px;
