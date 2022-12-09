@@ -1,7 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { CharacterLoc } from '../models/Character';
 import { Area } from '../models/Map/Area.model';
 import { MapRepoService } from '../repositories/map-repo.service';
 

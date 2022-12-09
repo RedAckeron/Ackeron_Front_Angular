@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Character, CharacterLoc } from '../models/Character';
+import { Localisator } from '../models/Localisator/Localisator';
 import { CharacterRepoService } from '../repositories/character-repo.service';
 
 @Injectable({
@@ -11,13 +11,13 @@ export class CharacterService {
 
   constructor(private _CharacterRepo: CharacterRepoService) { }
   
-  GetCharacterLoc(id: number):CharacterLoc {
-    let result =new CharacterLoc(1,1,1,1,1,1,1);
+  GetCharacterLoc(id: number):Localisator {
+    let result =new Localisator(1,1,1,1,1,1,1,1,1,1,1,1,1,1);
     this._CharacterRepo.GetCharacterLoc(id).subscribe({
       next: (res) => {
       result.idChar=res.idChar;
-      result.locA_X=res.locA_X;
-      result.locA_Y=res.locA_Y;
+      result.locAX=res.locA_X;
+      result.locAY=res.locA_Y;
       //return res;
       },
       error: () => { },
@@ -26,7 +26,7 @@ export class CharacterService {
     return result;
   }
 
-  UpdateCharacterLoc(charloc: CharacterLoc) {
+  UpdateCharacterLoc(charloc: Localisator) {
     this._CharacterRepo.UpdateCharacterLoc(charloc).subscribe({
       next: (res) => {
         return res;

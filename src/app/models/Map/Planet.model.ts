@@ -17,7 +17,7 @@ export class Planet {
     SubTrigger:string;
    */
   /*,LocX:number,LocY:number,ImgItem:string,Reachable:boolean,MainTrigger:string,SubTrigger:string*/
-    constructor(id : number,Name:string,MaxX:number,MaxY:number,Areas:Area[]){
+    constructor(id : number,Name:string,MaxX:number,MaxY:number,Areas:Area[],_mapRepo:MapRepoService){
         this.IdPlanet = id;
         this.Name=Name;
         this.MaxX=MaxX;
@@ -33,6 +33,24 @@ export class Planet {
         this.SubTrigger=SubTrigger;
         */
     }
+   public GetMap(IdPlanet: number,_mapRepo:MapRepoService):Area[]{
+        let TabArea! : Area[];
+        
+        _mapRepo.GetMap(IdPlanet).subscribe( {
+          next: (res) => {
+            TabArea=res;
+            return TabArea;
+            },
+          error: () => {},
+          complete: () => {
+            this.Areas=TabArea;
+            console.log(this.Areas);
+          }
+        })
+        return TabArea;
+      } 
+      
+   
 
 }
 

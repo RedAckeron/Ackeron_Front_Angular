@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CharacterLoc } from '../models/Character';
+import { Localisator } from '../models/Localisator/Localisator';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +17,7 @@ export class CharacterRepoService {
     return this._httpClient.get(this._url + "Character/GetLoc/" + id);
   }
 
-  UpdateCharacterLoc(charloc: CharacterLoc): Observable<any> {
+  UpdateCharacterLoc(charloc: Localisator): Observable<any> {
     return this._httpClient.put(this._url + "Character/UpdateLoc/" + charloc.idChar, charloc);
   }
-
 }
