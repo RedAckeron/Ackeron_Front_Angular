@@ -1,0 +1,18 @@
+Q1 : L eveil du Ki Nagma (l histoire d un gamin qui vas decouvrire l existance du Ki)
+    S1 : Creation du premier fragment de Ki 
+    S2 : Investigation et decouverte du fonctionnement
+    S3 : La communauté de nécromantien
+    S4 : Recuperation du ki et
+    S5 : Le ki prend ses 5 formes physique (CAC DIStant Tank Healer Craft)
+Q2 : L explosion du Bot Meka (l histoire d un gamin pauvre qui recuperer un bot endomager pour en faire son compagnon)
+    S1 : Achat du Bot detruit
+    S2 : Evalutation des degats et collecte des composants
+    S3 : Les bandits de grand chemin
+    S4 : La recuperation des pieces
+    S5 : Assemblage et activation du bot (CAC DIStant Tank Healer Craft)
+Q3 : L appel de l animal inconnus Hangus (l histoire d un gamin qui perd son chat dans un accident et entend un animal l appeler )
+    S1 : La découvertede l oeuf innatendu
+    S2 : l inconnus qui en sait trop
+    S3 : le confrerie de voleurs d oeuf
+    S4 : la recuperation de l oeuf
+    S5 : La naissance de l Hangus (CAC DIStant Tank Healer Craft)

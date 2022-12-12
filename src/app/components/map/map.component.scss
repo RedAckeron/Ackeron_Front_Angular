@@ -1,0 +1,43 @@
+.char{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width:32px;
+    height: 32px;
+    animation-name: charmove;
+    animation-duration:2s;
+    animation-delay: 0.5s;
+}
+@keyframes charmove {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+  }
+
+  .map{
+    position: relative;
+    background-image: url('../../../assets/gif/bground/sand.gif');  
+    background-size: cover;
+    border:solid 1px;
+}
+
+.info{
+    background-color:pink ;
+}
+
+.RockGreen{
+    position:absolute;
+    width:16px;
+    height:16px;
+}
+.BushGreen{
+    position:absolute;
+    width:16px;
+    height:16px;
+}
+.StairGreen{
+    position:absolute;
+    width:16px;
+    height:16px;
+}
