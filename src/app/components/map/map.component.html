@@ -1,24 +1,24 @@
-<!-- 
-<div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale)}">
-     Affichage des elements du decor 
-    
+
+<div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
+     <!-- Affichage des elements du decor  -->
     <div *ngFor="let item of planet.Areas">
-        <div class="{{item.name}}" [ngStyle]="{'left.px':item.locX*scale,'top.px': item.locY*scale}">
+        <div class="MapElement"[ngStyle]="{'left.px':item.locX*scale,'top.px': item.locY*scale}">
             <div (click)="SetTarget()">
-            <img src="../assets/gif/item/{{item.name}}.gif" width={{scale}} alt="{{item.name}}">
+            <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
             </div>
         </div>
     </div>
 
-     Affichage des Hero 
-    <div class="char" [ngStyle]="{'left.px':this.Hero.Loc.locA_X*scale,'top.px': this.Hero.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
-     Affichage des mobs 
+    <!-- Affichage des Hero  -->
+    <div class="char"  [ngStyle]="{'left.px':this.Hero.Loc.locA_X*scale,'top.px': this.Hero.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
+    
+    <!-- Affichage des mobs  -->
     <div class="char" [ngStyle]="{'left.px':this.Mob.Loc.locA_X*scale,'top.px': this.Mob.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{Mob.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
 </div>
 
-<div class="info">{{this.Hero.Loc.locA_X+"/"+this.Hero.Loc.locA_Y+" =======>"+totalSecondes}}</div>
 
--->
+
+
 
 
 

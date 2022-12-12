@@ -1,4 +1,4 @@
-import { JsonPipe, LocationStrategy, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { pipe } from 'rxjs';
 import { Character, CharacterLoc } from 'src/app/models/Character';
@@ -7,7 +7,6 @@ import { Planet } from 'src/app/models/Map/Planet.model';
 import { MapRepoService } from 'src/app/repositories/map-repo.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { MathService } from 'src/app/services/math.service';
-
 
 @Component({
   selector: 'app-map',
@@ -20,17 +19,17 @@ export class MapComponent implements OnInit {
       Mob = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
       Areas!:Area[];
       planet =new Planet(0,'',20,20,[],this._mapRepo);
-      scale=32;
+      scale=24;
       totalSecondes : number = 0;
       timer : any = undefined;
 
 constructor(private _characterService : CharacterService,private _mathService:MathService,private _mapRepo: MapRepoService) { }
  
 ngOnInit(): void {
-    this.GetMap(1);
+    this.planet.GetMap(1,this._mapRepo);
     this.play();
 }
-
+/*
 GetMap(IdPlanet: number):Area[]{
   let TabArea! : Area[];
   this._mapRepo.GetMap(IdPlanet).subscribe( {
@@ -49,7 +48,7 @@ GetMap(IdPlanet: number):Area[]{
   return TabArea;
 } 
 
-
+*/
 play() : void {
    this.timer = setInterval( () => { 
     
