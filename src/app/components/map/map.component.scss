@@ -1,3 +1,25 @@
+#all
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.map{
+    position: relative;
+    background-image: url('../../../assets/gif/bground/sand.gif');  
+    flex-direction: column;
+    border:solid 1px;
+    max-width: 500px;
+    float: left;
+}
+
+.panel{
+    background-color: lightgrey;
+    border: solid 1px;
+    width:200px;
+    height:800px;
+    float:left
+}
 .char{
     position: absolute;
     left: 0px;
@@ -6,14 +28,6 @@
     height: 32px;
 }
 
-
-
-  .map{
-    position: relative;
-    background-image: url('../../../assets/gif/bground/sand.gif');  
-    
-    border:solid 1px;
-}
 
 .info{
     background-color:pink ;

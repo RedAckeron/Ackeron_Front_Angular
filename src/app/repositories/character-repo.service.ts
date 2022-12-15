@@ -16,8 +16,9 @@ export class CharacterRepoService {
   GetCharacterLoc(id: number): Observable<any> {
     return this._httpClient.get(this._url + "Character/GetLoc/" + id);
   }
-
+/*
   UpdateCharacterLoc(charloc: Localisator): Observable<any> {
-    return this._httpClient.put(this._url + "Character/UpdateLoc/" + charloc.idChar, charloc);
+    return this._httpClient.put(this._url + "Character/UpdateLoc/" +  charloc);
   }
+  */
 }

@@ -1,23 +1,22 @@
-
-<div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
+<div class="all">
+    <div class="panel">test</div>
+    <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
      <!-- Affichage des elements du decor  -->
-    <div *ngFor="let item of planet.Areas">
-        <div class="MapElement"[ngStyle]="{'left.px':item.locX*scale,'top.px': item.locY*scale}">
-            <div (click)="SetTarget()">
-            <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
+        <div *ngFor="let item of planet.Areas">
+            <div class="MapElement"[ngStyle]="{'left.px':item.Localisator.locAX*scale,'top.px': item.Localisator.locAY*scale}">
+                <div (click)="SetTarget(item.Localisator.locAId)">
+                <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Affichage des Hero  -->
-    <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
-    
-    <!-- Affichage des mobs  -->
-    <div class="char" [ngStyle]="{'left.px':this.Mob.Localisator.locAX*scale,'top.px': this.Mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{Mob.Orientation}}.gif" width={{scale}} alt="Link"></div>
+        <!-- Affichage des Hero  -->
+        <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
+        
+        <!-- Affichage des mobs  -->
+        <div *ngFor="let mob of mobs">
+            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link"></div>
 </div>
-
-
-
 
 
 

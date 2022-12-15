@@ -2,7 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Area } from '../models/Map/Area.model';
-import { MapRepoService } from '../repositories/map-repo.service';
+import { MapPlanetRepoService } from '../repositories/Map/map-planet-repo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { MapRepoService } from '../repositories/map-repo.service';
 export class MapService {
 
   private tabArea! : Area[];
-  constructor(private _MapRepo: MapRepoService){ }
+  constructor(private _MapRepo: MapPlanetRepoService){ }
   
    GetMap(IdPlanet: number):Area[]{
     //let result =new CharacterLoc(1,1,1,1,1,1,1);

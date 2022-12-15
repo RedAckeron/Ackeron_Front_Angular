@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 export class MathService {
 
   constructor() { }
-   getRandomInt(max:number) {
-    return Math.floor(Math.random() * max);
+    RandomNumber(min :number, max:number)
+    {
+     return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
   }
-}
+//}

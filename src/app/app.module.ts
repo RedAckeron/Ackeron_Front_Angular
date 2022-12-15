@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowQuestComponent } from './components/quest/show-quest/show-quest.component';
-import { CommonModule } from '@angular/common';
 import { MapComponent } from './components/map/map.component';
 import { FicheComponent } from './components/Character/fiche/fiche.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { FicheComponent } from './components/Character/fiche/fiche.component';
     NavbarComponent,
     ShowQuestComponent,
     MapComponent,
-    FicheComponent
+    FicheComponent,
     ],
   imports: [
     BrowserModule,

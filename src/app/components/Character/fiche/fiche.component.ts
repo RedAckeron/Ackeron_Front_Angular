@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-fiche',
   templateUrl: './fiche.component.html',

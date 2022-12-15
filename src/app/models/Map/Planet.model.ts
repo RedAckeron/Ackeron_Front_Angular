@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { MapRepoService } from "src/app/repositories/map-repo.service";
+import { MapPlanetRepoService } from "src/app/repositories/Map/map-planet-repo.service";
 import { Area } from "./Area.model";
 
 export class Planet {
@@ -17,7 +17,7 @@ export class Planet {
     SubTrigger:string;
    */
   /*,LocX:number,LocY:number,ImgItem:string,Reachable:boolean,MainTrigger:string,SubTrigger:string*/
-    constructor(id : number,Name:string,MaxX:number,MaxY:number,Areas:Area[],_mapRepo:MapRepoService){
+    constructor(id : number,Name:string,MaxX:number,MaxY:number,Areas:Area[],_mapRepo:MapPlanetRepoService){
         this.IdPlanet = id;
         this.Name=Name;
         this.MaxX=MaxX;
@@ -33,7 +33,7 @@ export class Planet {
         this.SubTrigger=SubTrigger;
         */
     }
-   public GetMap(IdPlanet: number,_mapRepo:MapRepoService):Area[]{
+   public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
         let TabArea! : Area[];
         
         _mapRepo.GetMap(IdPlanet).subscribe( {

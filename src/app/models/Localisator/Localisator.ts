@@ -1,5 +1,4 @@
 export class Localisator{
-    idChar:number=0;
     locUId:number=0;
 
     locSId:number=0;
@@ -18,14 +17,14 @@ export class Localisator{
     locZX:number=0;
     locZY:number=0;
 
-    constructor(idChar : number,locUId:number, 
-        locSId : number,LocSX:number,LocSY:number,
+    constructor(locUId:number, 
+        locSId:number,LocSX:number,LocSY:number,
         locPId:number,locPX:number,locPY:number,
         locAId:number,locAX:number,locAY:number,
         locZId:number,locZX:number,locZY:number,
 
         ){
-        this.idChar=idChar;
+       
         this.locUId=locUId;
 
         this.locSId=locSId;
@@ -44,9 +43,4 @@ export class Localisator{
         this.locZX=locZX;
         this.locZY=locZY;
     }
-    public ReadLocalisator()
-        {
-            
-            return this
-        }
 }

@@ -13,20 +13,12 @@ export class Mob extends Character {
         this.Localisator=localisator;
     }
     public loadmob(){
-       
-        
     }
     public RandomMove(planet:Planet){
-        //this.CheckMoveBorder()
+       
         let timer : any = undefined;
-        timer = setInterval( () => { 
-            
-            let move=this.CheckMoveBorder(planet);
-            
-            
-            this.SelectMove(move);
-
-        //this.CheckMoveBorder(Planet planet);
+        timer = setInterval( () => {
+        this.SelectMove(this.CheckMoveBorder(planet));
         }, this.Refresh);
     }
 }

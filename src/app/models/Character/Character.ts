@@ -8,7 +8,7 @@ export abstract class Character {
     Race:number;
     Refresh:number=1000;
     LocalisatorId:number=0;
-    Localisator:Localisator=new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+    Localisator:Localisator=new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0);
     Orientation:string="nord";
 
     constructor(id : number,name:string,race:number){
@@ -23,25 +23,34 @@ export abstract class Character {
         if(this.Localisator.locAX>0)move+="w";
         if(this.Localisator.locAY<planet.MaxY)move+="s";
         if(this.Localisator.locAY>0)move+="n";
-        console.log(this.Name+" peut aller en direction de "+move);
         return move
     }
 
     public SelectMove(AllMove:string):Localisator{
         let math=new MathService();
         let moveok=false;
+        let LocalisatorTarget = new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    
+    
     while(!moveok)
         {
-        let SelectedMove = math.getRandomInt(AllMove.length);
-        let DirectionTry=AllMove.substring(SelectedMove,1);
-        AllMove.slice(SelectedMove);
-        let LocalisatorTarget = new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+            
+        let SelectedMove = math.RandomNumber(0,AllMove.length-1);
+        
+        let DirectionTry=AllMove.substring(SelectedMove,SelectedMove+1);
+        console.log("Direction dispo : "+AllMove+" -- Direction choisis : "+DirectionTry);
+        
+        AllMove=AllMove.replace(DirectionTry,'');
+       
+        //AllMove.slice(SelectedMove,1);
+
         LocalisatorTarget=this.Localisator;
+
         switch (DirectionTry) {
             case 'n':{
                 LocalisatorTarget.locAY--;
-                this.Orientation='nord';                
-                }break;
+                this.Orientation='nord';  
+               }break;
             case 's':{
                 LocalisatorTarget.locAY++;
                 this.Orientation='sud';
@@ -55,30 +64,20 @@ export abstract class Character {
                 this.Orientation='est';
                 }break;
             }
+
+        //on verifie que la position ou on veut aller est libre
+
+        // si elle est libre on renvoi la localisator qui a ete choisis 
+        //et on sort de la bouche de test moveok
+
+        moveok=true;
         }
-       
-
-
-        return (Localisatortarget:Localisator)
+        return LocalisatorTarget
     };
 
-        //let moveselected='';
-      
-
-console.log(this.Name+"Direction choisis : "+this.Orientation);
-
-    }
-    public CheckFreeArea(loc:Localisator):boolean{
-        console.log('CheckFreeArea');
-
-    //let move=this.CheckMoveBorder();
-    return false;
-    }
-
-public ExecMove(target : Localisator)
-    {
-    console.log('ExecMove');
-
-    }
-
+    public ExecMove(LocalisatorTarget : Localisator){
+        console.log('ExecMove');
+        this.Localisator=LocalisatorTarget;
+        //update Localisator
+        }
 }
