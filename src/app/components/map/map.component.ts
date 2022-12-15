@@ -2,6 +2,9 @@ import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { pipe } from 'rxjs';
 import { Character, CharacterLoc } from 'src/app/models/Character';
+import { Hero } from 'src/app/models/Character/Hero';
+import { Mob } from 'src/app/models/Character/Mob';
+import { Localisator } from 'src/app/models/Localisator/Localisator';
 import { Area } from 'src/app/models/Map/Area.model';
 import { Planet } from 'src/app/models/Map/Planet.model';
 import { MapRepoService } from 'src/app/repositories/map-repo.service';
@@ -15,8 +18,8 @@ import { MathService } from 'src/app/services/math.service';
 })
 export class MapComponent implements OnInit {
  
-      Hero = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
-      Mob = new Character(0,'',0,new CharacterLoc(0,0,0,0,0,0,0));
+      Hero = new Hero(0,'',0,1000,new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+      Mob = new Mob(0,'Mob',0,1000,new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
       Areas!:Area[];
       planet =new Planet(0,'',20,20,[],this._mapRepo);
       scale=24;
@@ -26,46 +29,27 @@ export class MapComponent implements OnInit {
 constructor(private _characterService : CharacterService,private _mathService:MathService,private _mapRepo: MapRepoService) { }
  
 ngOnInit(): void {
+  console.clear();
     this.planet.GetMap(1,this._mapRepo);
     this.play();
 }
-/*
-GetMap(IdPlanet: number):Area[]{
-  let TabArea! : Area[];
-  this._mapRepo.GetMap(IdPlanet).subscribe( {
-    next: (res) => {
-      TabArea=res;
-      console.log(res);
-      
-      return TabArea;
-      },
-    error: () => {},
-    complete: () => {
-      this.planet.Areas=TabArea;
-      console.log(this.planet.Areas);
-    }
-  })
-  return TabArea;
-} 
 
-*/
 play() : void {
-   this.timer = setInterval( () => { 
+   //this.timer = setInterval( () => { 
     
     //on verifie si on est pas au bord de la carte se qui vas definir par ou on peut aller
-    let Heromove=this.Hero.CheckMoveBorder(this.planet);
-    this.Hero.SelectMove(Heromove);
+    //let Heromove=this.Hero.CheckMoveBorder(this.planet);
+    //this.Hero.SelectMove(Heromove);
 
     let Mobmove=this.Mob.CheckMoveBorder(this.planet);
     this.Mob.SelectMove(Mobmove);
-   
+   this.Mob.RandomMove(this.planet);
     //this._characterService.UpdateCharacterLoc(this.Hero.Loc);
     this.totalSecondes ++;
-        } , 1000);
+       //} , 1000);
     }
 SetTarget()
 {
   console.log("Target defini");
-  
 }
 }

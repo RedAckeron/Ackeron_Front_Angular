@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShowQuestComponent } from './components/quest/show-quest/show-quest.component';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './components/map/map.component';
+import { FicheComponent } from './components/Character/fiche/fiche.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ShowQuestComponent,
-    MapComponent
+    MapComponent,
+    FicheComponent
     ],
   imports: [
     BrowserModule,

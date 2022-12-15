@@ -17,7 +17,6 @@ export class Localisator{
     locZId:number=0;
     locZX:number=0;
     locZY:number=0;
-    orientation:string="nord";
 
     constructor(idChar : number,locUId:number, 
         locSId : number,LocSX:number,LocSY:number,
@@ -45,4 +44,9 @@ export class Localisator{
         this.locZX=locZX;
         this.locZY=locZY;
     }
+    public ReadLocalisator()
+        {
+            
+            return this
+        }
 }

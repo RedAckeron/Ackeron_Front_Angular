@@ -10,10 +10,10 @@
     </div>
 
     <!-- Affichage des Hero  -->
-    <div class="char"  [ngStyle]="{'left.px':this.Hero.Loc.locA_X*scale,'top.px': this.Hero.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
+    <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
     
     <!-- Affichage des mobs  -->
-    <div class="char" [ngStyle]="{'left.px':this.Mob.Loc.locA_X*scale,'top.px': this.Mob.Loc.locA_Y*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{Mob.Loc.orientation}}.gif" width={{scale}} alt="Link"></div>
+    <div class="char" [ngStyle]="{'left.px':this.Mob.Localisator.locAX*scale,'top.px': this.Mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{Mob.Orientation}}.gif" width={{scale}} alt="Link"></div>
 </div>
 
 

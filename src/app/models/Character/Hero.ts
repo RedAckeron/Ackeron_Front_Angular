@@ -4,12 +4,12 @@ import { Character } from "./Character";
 import { Localisator } from "../Localisator/Localisator";
 
 export class Hero extends Character {
-    constructor(id : number,name:string,race:number,refresh:number,loc:Localisator){
-        super(id,name,race,refresh,loc);
+    constructor(id : number,name:string,race:number,refresh:number,localisator:Localisator){
+        super(id,name,race);
         this.Id = id;
         this.Name=name;
         this.Race=race;
-        this.Loc=loc;
+        this.Localisator=localisator;
         this.Refresh=refresh;
     }
 }
