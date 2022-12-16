@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatternValidator } from '@angular/forms';
+import { Character } from 'src/app/models/Character/Character';
 import { Hero } from 'src/app/models/Character/Hero';
 import { Mob } from 'src/app/models/Character/Mob';
 import { Localisator } from 'src/app/models/Localisator/Localisator';
@@ -48,9 +49,9 @@ console.log(this.mobs);
 }
 
 
-SetTarget(IdArea : number)
+SetTarget(AreaId : number)
 {
   
-  console.log("Target defini");
+  console.log("Target defini : "+AreaId);
 }
 }

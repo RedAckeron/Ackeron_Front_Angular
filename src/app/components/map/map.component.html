@@ -4,7 +4,7 @@
      <!-- Affichage des elements du decor  -->
         <div *ngFor="let item of planet.Areas">
             <div class="MapElement"[ngStyle]="{'left.px':item.Localisator.locAX*scale,'top.px': item.Localisator.locAY*scale}">
-                <div (click)="SetTarget(item.Localisator.locAId)">
+                <div (click)="SetTarget(item.idArea)">
                 <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
                 </div>
             </div>
@@ -15,10 +15,8 @@
         
         <!-- Affichage des mobs  -->
         <div *ngFor="let mob of mobs">
-            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link"></div>
+            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link">
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-
-
