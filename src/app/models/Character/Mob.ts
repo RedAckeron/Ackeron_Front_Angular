@@ -4,16 +4,16 @@ import { Localisator } from "../Localisator/Localisator";
 import { Planet } from '../Map/Planet.model';
 
 export class Mob extends Character {
-    constructor(id : number,name:string,race:number,refresh:number,localisator:Localisator){
-        super(id,name,race);
+    constructor(id : number,tsin:number,info:Info,localisator:Localisator,refresh:number,){
+        super(id,0,info,localisator);
         this.Id = id;
-        this.Name=name;
-        this.Race=race;
-        this.Refresh=refresh;
+        this.TsIn=tsin;
+        this.Info=info;
         this.Localisator=localisator;
+        this.Refresh=refresh;
     }
-    public loadmob(){
     }
+
     public RandomMove(planet:Planet){
        
         let timer : any = undefined;

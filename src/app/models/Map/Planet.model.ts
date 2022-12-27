@@ -48,10 +48,5 @@ export class Planet {
           }
         })
         return TabArea;
-      } 
-      
-   
-
+      }
 }
-
-

@@ -1,20 +1,22 @@
 import { Planet } from "../Map/Planet.model";
 import { MathService } from '../../services/math.service';
 import { Localisator } from "../Localisator/Localisator";
+import { Info } from "../Info/Info.model";
 
 export abstract class Character {
     Id:number;
-    Name:string;
-    Race:number;
-    Refresh:number=1000;
-    LocalisatorId:number=0;
+    TsIn:number;
+    Info:Info = new Info(0,'',0,0,0,0,0);
     Localisator:Localisator=new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    Refresh:number=1000;
+    
     Orientation:string="nord";
 
-    constructor(id : number,name:string,race:number){
+    constructor(id : number,tsin:number,info:Info,localisator:Localisator){
         this.Id = id;
-        this.Name=name;
-        this.Race=race;
+        this.TsIn=tsin;
+        this.Info=info
+       this.Localisator=localisator;
     }
 
     public CheckMoveBorder(planet:Planet):string{

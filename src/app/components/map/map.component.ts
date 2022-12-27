@@ -17,41 +17,47 @@ import { MathService } from 'src/app/services/math.service';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
- 
-      Hero = new Hero(0,'',0,1000,new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0));
-      mobs!:Mob[];
 
-      Areas!:Area[];
-      planet =new Planet(0,'',20,20,[],this._mapRepo);
-      scale=24;
-      totalSecondes : number = 0;
-      timer : any = undefined;
-      
+  Hero = new Hero(0, '', 0, 1000, new Localisator(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+  mobs!: Mob[];
 
-constructor(private _characterService : CharacterService,private _mathService:MathService,private _mapRepo: MapPlanetRepoService,private _mobRepo:MobRepoService) { }
- 
-ngOnInit(): void {
-  console.clear();
-  this.planet.GetMap(1,this._mapRepo);
-  this.LoadMob(this._mobRepo);
-  this.mobs.forEach(element => {
-  element.RandomMove(this.planet);
-    
-  });
- }
+  //mob: Mob = new Mob(0, '', 0, 1000, new Localisator(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+  mob? : Mob;
 
-LoadMob(_mobRepo:MobRepoService)
-{
+  Areas!: Area[];
+  planet = new Planet(0, '', 20, 20, [], this._mapRepo);
+  scale = 24;
+  totalSecondes: number = 0;
+  timer: any = undefined;
+  AreaTarget: number = 0;
 
-this.mobs=_mobRepo.GetMob();
-console.log(this.mobs);
+  constructor(private _characterService: CharacterService, private _mathService: MathService, private _mapRepo: MapPlanetRepoService, private _mobRepo: MobRepoService) { }
 
-}
+  ngOnInit(): void {
+    console.clear();
+    this.planet.GetMap(1, this._mapRepo);
+
+    this.LoadMob(this._mobRepo);
+    this.mobs.forEach(element => {
+      element.RandomMove(this.planet);
+
+    });
+  }
+
+  LoadMob(_mobRepo: MobRepoService) {
+
+    //this.mobs=_mobRepo.GetMob();
+
+    this.mob = _mobRepo.GetMobonline(1)
+
+    //+=
+
+    console.log(this.mobs);
+  }
 
 
-SetTarget(AreaId : number)
-{
-  
-  console.log("Target defini : "+AreaId);
-}
+  SetTarget(IdArea: number) {
+    this.AreaTarget = IdArea
+    console.log("Target defini : " + IdArea);
+  }
 }

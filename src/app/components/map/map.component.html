@@ -1,9 +1,13 @@
 <div class="all">
-    <div class="panel">test</div>
+    <div class="panel">
+        <div *ngIf="AreaTarget!=0">target defini</div>
+
+
+    </div>
     <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
      <!-- Affichage des elements du decor  -->
         <div *ngFor="let item of planet.Areas">
-            <div class="MapElement"[ngStyle]="{'left.px':item.Localisator.locAX*scale,'top.px': item.Localisator.locAY*scale}">
+            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale}">
                 <div (click)="SetTarget(item.idArea)">
                 <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
                 </div>
