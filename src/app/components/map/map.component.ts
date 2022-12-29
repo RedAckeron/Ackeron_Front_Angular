@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatternValidator } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Character } from 'src/app/models/Character/Character';
 import { Hero } from 'src/app/models/Character/Hero';
 import { Mob } from 'src/app/models/Character/Mob';
@@ -18,14 +19,14 @@ import { MathService } from 'src/app/services/math.service';
 })
 export class MapComponent implements OnInit {
 
-  Hero = new Hero(0, '', 0, 1000, new Localisator(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-  mobs!: Mob[];
+  //Hero = new Hero(0, '', 0, 1000, new Localisator(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+  //mobs!: Observable<Mob[]>;
 
   //mob: Mob = new Mob(0, '', 0, 1000, new Localisator(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
-  mob? : Mob;
+  //mob? : Mob;
 
   Areas!: Area[];
-  planet = new Planet(0, '', 20, 20, [], this._mapRepo);
+  planet = new Planet(0, '', 20, 20, [],[], this._mapRepo);
   scale = 24;
   totalSecondes: number = 0;
   timer: any = undefined;
@@ -37,23 +38,24 @@ export class MapComponent implements OnInit {
     console.clear();
     this.planet.GetMap(1, this._mapRepo);
 
-    this.LoadMob(this._mobRepo);
-    this.mobs.forEach(element => {
-      element.RandomMove(this.planet);
+    //this.LoadMob(this._mobRepo);
+    this.planet.GetMob(1,this._mobRepo);
 
+    this.planet.Mobs.forEach(element => {
+      element.RandomMove(this.planet);
     });
   }
-
+/*
   LoadMob(_mobRepo: MobRepoService) {
-
-    //this.mobs=_mobRepo.GetMob();
-
-    this.mob = _mobRepo.GetMobonline(1)
+  this.planet.GetMob(_mobRepo.(1,_mobRepo));
+   
+    //this.mob = _mobRepo.GetMobonline(1)
 
     //+=
 
-    console.log(this.mobs);
+    console.log(this.planet.Mobs);
   }
+*/
 
 
   SetTarget(IdArea: number) {
