@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
   totalSecondes: number = 0;
   timer: any = undefined;
   AreaTarget: number = 0;
-
+  nbmob:number=0;
   constructor(private _characterService: CharacterService, private _mathService: MathService, private _mapRepo: MapPlanetRepoService, private _mobRepo: MobRepoService) { }
 
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class MapComponent implements OnInit {
 
     //this.LoadMob(this._mobRepo);
     this.planet.GetMob(1,this._mobRepo);
+    
 
     this.planet.Mobs.forEach(element => {
       element.RandomMove(this.planet);

@@ -1,3 +1,4 @@
+import { JsonPipe } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { MapPlanetRepoService } from "src/app/repositories/Map/map-planet-repo.service";
 import { MobRepoService } from "src/app/repositories/Mob/mob-repo.service";
@@ -9,8 +10,8 @@ export class Planet {
     Name:string;
     MaxX:number;
     MaxY:number;
-    Areas : Area[];
-    Mobs : Mob[];
+    Areas : Area[]=[];
+    Mobs : Mob[]=[];
     
     /*
     LocX:number;
@@ -38,7 +39,7 @@ export class Planet {
         */
     }
     public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
-        let TabArea! : Area[];
+        let TabArea : Area[]=[];
         
         _mapRepo.GetMap(IdPlanet).subscribe( {
           next: (res) => {
@@ -53,18 +54,19 @@ export class Planet {
         })
         return TabArea;
       }
-    public GetMob(IdPlanet: number,_mobRepo : MobRepoService):Mob[]{
-        let TabMob! : Mob[];
-        
-        _mobRepo.GetMobonline(IdPlanet).subscribe( {
+
+
+    public GetMob(IdMob: number,_mobRepo : MobRepoService):Mob[]{
+        let TabMob : Mob[]=[];
+        _mobRepo.GetMob(IdMob).subscribe( {
           next: (res) => {
             TabMob=res;
             return TabMob;
             },
           error: () => {},
           complete: () => {
-            this.Mobs=TabMob;
-            console.log(this.Mobs);
+            //this.Mobs=TabMob;
+            //console.log(this.Mobs);
           }
         })
         return TabMob;

@@ -1,8 +1,15 @@
 <div class="all">
     <div class="panel">
+        <div>ID:{{planet.Mobs[0].Localisator.locAX}}</div>
+
+
+
         <div *ngIf="AreaTarget!=0">target defini</div>
-
-
+        
+        
+        <div *ngFor="let mob of planet.Mobs">
+            <li>{{mob.info.name}</li>
+        </div>
     </div>
     <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
      <!-- Affichage des elements du decor  -->
@@ -19,7 +26,8 @@
          -->
         <!-- Affichage des mobs  -->
         <div *ngFor="let mob of planet.Mobs">
-            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link">
+            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}">
+                <img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link">
             </div>
         </div>
     </div>
