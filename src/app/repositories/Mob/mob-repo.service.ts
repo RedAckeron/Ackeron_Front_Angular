@@ -33,7 +33,6 @@ export class MobRepoService {
   }
 
 
-
   
   GetMob(IdMob: number): Observable<Mob[]> {
     return this._httpClient.get<Mob[]>(this._url + "Read/" + IdMob);    
