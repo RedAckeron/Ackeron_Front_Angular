@@ -32,7 +32,7 @@ export class MobRepoService {
     return this._httpClient.get<Mob[]>(this._url + "ReadAllOfPlanet/" + idPlanet);
   }
 
-*/
+
 
   
   GetMob(IdMob: number): Observable<Mob[]> {
