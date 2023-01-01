@@ -28,10 +28,9 @@ export class MapService {
         },
       error: () => {},
       complete: () => {
-        console.log(TabArea)
+        console.log("Liste des area de la map : "+TabArea)
         this.tabArea = TabArea}
     })
-
    return this.tabArea;
     //return this.GetMap(IdPlanet);*/
   }

@@ -1,4 +1,4 @@
-import { Localisator } from "../Localisator/Localisator";
+import { Localisator } from "../Localisator";
 
 
 export class Area {

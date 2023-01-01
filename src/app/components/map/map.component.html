@@ -18,8 +18,14 @@
         <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
          -->
         <!-- Affichage des mobs  -->
-        <div *ngFor="let mob of planet.Mobs">
-            <div (click)="SetTarget(mob.Localisator.locAId)" class="char" [ngStyle]="{'left.px':mob.Localisator.locAX*scale,'top.px': mob.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/mob/mob1/{{mob.Orientation}}.gif" width={{scale}} alt="Link">
+        
+        
+        
+        <div *ngFor="let mob of planet.Horde">
+            <div (click)="SetTarget(mob.localisator.locAId)" class="char" 
+            [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
+            <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} 
+            alt="{{mob.info.name}}">
             </div>
         </div>
     </div>

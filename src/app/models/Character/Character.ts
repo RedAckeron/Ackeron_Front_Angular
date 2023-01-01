@@ -1,30 +1,30 @@
 import { Planet } from "../Map/Planet.model";
 import { MathService } from '../../services/math.service';
-import { Localisator } from "../Localisator/Localisator";
-import { Info } from "../Info/Info.model";
+import { Localisator } from "../Localisator";
+import { Info } from "../Info.model";
 
 export abstract class Character {
-    Id:number;
-    TsIn:number;
-    Info:Info = new Info(0,'',0,0,0,0,0);
-    Localisator:Localisator=new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0);
-    Refresh:number=1000;
+    id:number;
+    tsIn:number;
+    info:Info = new Info(0,'',0,0,0,0,0,"","nord");
+    localisator:Localisator=new Localisator(0,0,0,0,0,0,0,0,0,0,0,0,0);
+    refresh:number=1000;
     
     Orientation:string="nord";
 
     constructor(id : number,tsin:number,info:Info,localisator:Localisator){
-        this.Id = id;
-        this.TsIn=tsin;
-        this.Info=info
-       this.Localisator=localisator;
+        this.id = id;
+        this.tsIn=tsin;
+        this.info=info
+        this.localisator=localisator;
     }
 
     public CheckMoveBorder(planet:Planet):string{
         let move : string="";
-        if(this.Localisator.locAX<planet.MaxX)move+="e";
-        if(this.Localisator.locAX>0)move+="w";
-        if(this.Localisator.locAY<planet.MaxY)move+="s";
-        if(this.Localisator.locAY>0)move+="n";
+        if(this.localisator.locAX<planet.MaxX)move+="e";
+        if(this.localisator.locAX>0)move+="w";
+        if(this.localisator.locAY<planet.MaxY)move+="s";
+        if(this.localisator.locAY>0)move+="n";
         return move
     }
 
@@ -46,7 +46,7 @@ export abstract class Character {
        
         //AllMove.slice(SelectedMove,1);
 
-        LocalisatorTarget=this.Localisator;
+        LocalisatorTarget=this.localisator;
 
         switch (DirectionTry) {
             case 'n':{
@@ -79,7 +79,7 @@ export abstract class Character {
 
     public ExecMove(LocalisatorTarget : Localisator){
         console.log('ExecMove');
-        this.Localisator=LocalisatorTarget;
+        this.localisator=LocalisatorTarget;
         //update Localisator
         }
 }

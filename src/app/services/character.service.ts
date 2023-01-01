@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Localisator } from '../models/Localisator/Localisator';
+import { Localisator } from '../models/Localisator';
 import { CharacterRepoService } from '../repositories/character-repo.service';
 
 @Injectable({
