@@ -1,8 +1,15 @@
 <div class="all">
     <div class="panel">
+        <div>ID:{{planet.Mobs[0].Localisator.locAX}}</div>
+
+
+
         <div *ngIf="AreaTarget!=0">target defini</div>
-
-
+        
+        
+        <div *ngFor="let mob of planet.Mobs">
+            <li>{{mob.info.name}</li>
+        </div>
     </div>
     <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
      <!-- Affichage des elements du decor  -->

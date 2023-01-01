@@ -1,3 +1,4 @@
+import { JsonPipe } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { MapPlanetRepoService } from "src/app/repositories/Map/map-planet-repo.service";
@@ -23,7 +24,7 @@ export class Planet {
     }
 
     public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
-        let TabArea! : Area[];
+        let TabArea : Area[]=[];
         
         _mapRepo.GetMap(IdPlanet).subscribe( {
           next: (res) => {

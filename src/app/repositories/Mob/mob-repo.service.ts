@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { Mob } from 'src/app/models/Character/Mob';
 import { Info } from 'src/app/models/Info.model';
 import { Localisator } from 'src/app/models/Localisator';
@@ -32,6 +32,12 @@ export class MobRepoService {
     return this._httpClient.get<Mob[]>(this._url + "ReadAllOfPlanet/" + idPlanet);
   }
 
+*/
+
+  
+  GetMob(IdMob: number): Observable<Mob[]> {
+    return this._httpClient.get<Mob[]>(this._url + "Read/" + IdMob);    
+  }
 
   /*
       GetMap(IdPlanet: number): Observable<Area[]> {
