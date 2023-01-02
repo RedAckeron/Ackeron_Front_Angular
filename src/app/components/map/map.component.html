@@ -1,39 +1,141 @@
 <div class="all">
-    <div class="panel">
-        <div>ID:{{planet.Mobs[0].Localisator.locAX}}</div>
+    <div class="panel"></div>
 
-
-
-        <div *ngIf="AreaTarget!=0">target defini</div>
+    
         
-        
-        <div *ngFor="let mob of planet.Mobs">
-            <li>{{mob.info.name}</li>
-        </div>
-    </div>
-    <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
-     <!-- Affichage des elements du decor  -->
+    
+    <div class="map"
+        [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
+        <!-- Affichage des elements du decor  -->
         <div *ngFor="let item of planet.Areas">
-            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale}">
-                <div (click)="SetTarget(item.idArea)">
-                <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
+            <div class="MapElement"
+                [ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale}">
+                <div (click)="SetAreaTarget(item.idArea)">
+                    <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
                 </div>
             </div>
         </div>
 
-        <!-- Affichage des Hero 
-        <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
-         -->
+        <!-- Affichage des Hero  -->
+        <div class="char"
+            [ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
+            <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
+        </div>
+
         <!-- Affichage des mobs  -->
-        
-        
-        
         <div *ngFor="let mob of planet.Horde">
-            <div (click)="SetTarget(mob.localisator.locAId)" class="char" 
-            [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
-            <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} 
-            alt="{{mob.info.name}}">
+            <div>
+            <div (click)="SetMobTarget(mob.id)" class="char"
+                [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
+                <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link">
             </div>
         </div>
+        </div>
+    </div>
+    
+    <div class="panel" *ngIf="MobTarget==0">
+        <div *ngFor="let mob of planet.Horde">
+            <div class="BoxMob">
+                <div class="BoxMobImg">
+                    <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width="24px" alt="Link">
+                </div>
+        
+                <div class="BoxMobName">
+                    {{mob.info.name}}
+                </div>
+            </div>
+            <div class="BoxPvMax">
+                <div class="BoxText">{{mob.stat.pv +" / "+mob.stat.pvMax}}</div>
+                <div class="BoxPv" [ngStyle]="{'width.px':((mob.stat.pv/mob.stat.pvMax*100)*2)}"></div>
+            </div>
+            <div class="BoxPwMax">
+                <div class="BoxText">{{mob.stat.pw +" / "+mob.stat.pwMax}}</div>
+                <div class="BoxPw" [ngStyle]="{'width.px':((mob.stat.pw/mob.stat.pwMax*100)*2)}"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel" *ngIf="MobTarget!=0">
+        <div class="BoxMob">
+
+            <div class="BoxMobImg">
+                <img src="/assets/gif/mob/{{this.planet.Horde[MobTarget-1].info.img}}/{{this.planet.Horde[MobTarget-1].info.orientation}}.gif" width="" alt="Link">
+            </div>
+
+            <div class="BoxMobName">
+                {{this.planet.Horde[MobTarget-1].info.name}}
+            </div>
+        </div>
+        <div class="BoxPvMax">
+            <div class="BoxText">{{this.planet.Horde[MobTarget-1].stat.pv +" / "+this.planet.Horde[MobTarget-1].stat.pvMax}}</div>
+            <div class="BoxPv" [ngStyle]="{'width.px':((this.planet.Horde[MobTarget-1].stat.pv/this.planet.Horde[MobTarget-1].stat.pvMax*100)*2)}"></div>
+        </div>
+        <div class="BoxPwMax">
+            <div class="BoxText">{{this.planet.Horde[MobTarget-1].stat.pw +" / "+this.planet.Horde[MobTarget-1].stat.pwMax}}</div>
+            <div class="BoxPw" [ngStyle]="{'width.px':((this.planet.Horde[MobTarget-1].stat.pw/this.planet.Horde[MobTarget-1].stat.pwMax*100)*2)}"></div>
+        </div>
+
+
+        <div class="elem_col">
+            <div class="elem_col_power">Power</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/triforce.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">Resist</div>
+        </div>
+
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/eau.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/feu.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/air.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/terre.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/lumiere.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/tenebre.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/tranchant.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/ecrasant.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/percant.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+        <div class="elem_col">
+            <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
+            <div class="elem_col_img"><img src="/assets/gif/elementaire/poison.gif" width=24 alt="Elementaire Air"></div>
+            <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
+        </div>
+
+        <button>Attaquer</button>
+        <button>Voler</button>
+            
     </div>
 </div>

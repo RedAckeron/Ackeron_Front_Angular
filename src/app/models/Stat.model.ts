@@ -1,0 +1,25 @@
+export class Stat {
+    statsId:number=0;
+    ptMove:number=5;
+    ptMoveMax:number=5;
+    xp:number=0;
+    pv:number=100;
+    pvMax:number=100;
+    pw:number=100;
+    pwMax:number=100;
+    timeStampSimul:number=5;
+    coolDown:number=1000;
+ constructor(statsId:number,ptMove:number,ptMoveMax:number,xp:number,pv:number,pvMax:number,pw:number,pwMax:number,timeStampSimul:number,coolDown:number)
+    {
+    this.statsId=statsId;
+    this.ptMove=ptMove;
+    this.ptMoveMax=ptMoveMax;
+    this.xp=xp;
+    this.pv=pv;
+    this.pvMax=pvMax;
+    this.pw=pw;
+    this.pwMax=pwMax;
+    this.timeStampSimul=timeStampSimul;
+    this.coolDown=coolDown;
+    }
+}

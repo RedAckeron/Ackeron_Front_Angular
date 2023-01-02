@@ -1,36 +1,129 @@
-#all
-{
+#all {
     display: flex;
     flex-direction: column;
 }
 
-.map{
+.map {
     position: relative;
-    background-image: url('../../../assets/gif/bground/sand.gif');  
+    background-image: url('../../../assets/gif/bground/sand.gif');
     flex-direction: column;
-    border:solid 1px;
+    border: solid 1px;
     max-width: 500px;
     float: left;
 }
 
-.panel{
+.panel {
     background-color: lightgrey;
     border: solid 1px;
-    width:200px;
-    height:800px;
-    float:left
+    width: 210px;
+    height: 500px;
+    float: left
 }
-.char{
+
+.char {
     position: absolute;
     left: 0px;
     top: 0px;
 }
-
-
-.info{
-    background-color:pink ;
+.Mob{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.MobSelected{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: red;
 }
 
-.MapElement{
-    position:absolute;
+
+.info {
+    background-color: pink;
+}
+
+.MapElement {
+    position: absolute;
+}
+
+
+
+.BoxMob{
+    width: 182px;
+    border: 1px ;
+    display : flex ;
+    margin: 2px;
+}
+
+.BoxMobImg{
+    width: 24px;
+    height: 24px;
+}
+
+.BoxMobName{
+    font-size: 24px;
+  
+}
+.BoxPvMax {
+    position: relative;
+
+    width: 200px;
+    height: 24px;
+    background-color: red;
+    border: 1px solid;
+    margin: 1px;
+}
+
+.BoxPv {
+    height: 24px;
+    background-color: greenyellow;
+}
+
+.BoxPwMax {
+    position: relative;
+
+    width: 200px;
+    height: 24px;
+    background-color: grey;
+    border: 1px solid;
+    margin: 1px;
+}
+
+.BoxPw {
+    height: 24px;
+    background-color: rgb(74, 166, 252);
+}
+.BoxText{
+    font-size: 24px;
+position: absolute;
+left: 0px;
+height: 0px;
+}
+
+
+.elem_col{
+    width: 182px;
+    border: 1px ;
+    display : flex ;
+    margin: 2px;
+}
+
+
+.elem_col_power{
+    width: 80px;
+    height: 24px;
+    font-size: 24px;
+    text-align: right;
+}
+
+.elem_col_img{
+    width: 24px;
+    height: 24px;
+    image-resolution: 24px;
+
+}
+.elem_col_resist{
+    width: 80px;
+    height: 24px;
+    font-size: 24px;
 }

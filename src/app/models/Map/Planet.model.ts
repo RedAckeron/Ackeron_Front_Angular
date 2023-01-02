@@ -22,7 +22,7 @@ export class Planet {
         this.Areas=Areas;
         this.Horde=Mobs;
     }
-
+/*
     public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
         let TabArea : Area[]=[];
         
@@ -39,25 +39,28 @@ export class Planet {
         })
         return TabArea;
       }
-
+      */
+/*
     public GetMob(_mobRepo : MobRepoService):Mob[]{
-        
+        let TabMob : Mob[]=[];
         _mobRepo.ReadAllOfPlanet(this.IdPlanet).subscribe( {
         next: (res) => {
-            res.forEach(tabmob => {
-            var mob = new Mob(tabmob.id,tabmob.tsIn,tabmob.info,tabmob.localisator,tabmob.refresh);
-            this.Horde.push(mob);
-             
-            //console.log("objet instanciée : "+mob.id);
-            });
-        return this.Horde;
+          console.log(res);
+          
+          TabMob=res;
+          console.log(TabMob);
+          
+          return TabMob;
+
+
+
         },
           error: () => {},
           complete: () => {
-          //this.Mobs=Horde;
-                    }
+            this.Horde=TabMob;
+          }
         })
-        return this.Horde;
+        return TabMob;
       }
-      
+*/
 }

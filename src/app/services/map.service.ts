@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Localisator } from '../models/Localisator';
 import { Area } from '../models/Map/Area.model';
 import { MapPlanetRepoService } from '../repositories/Map/map-planet-repo.service';
 
@@ -33,6 +34,11 @@ export class MapService {
     })
    return this.tabArea;
     //return this.GetMap(IdPlanet);*/
+  }
+
+  checkFreeArea(TargetArea:Localisator)
+  {
+
   }
 /*
   CheckMapBorderMove(CLoc: CharacterLoc ):string
