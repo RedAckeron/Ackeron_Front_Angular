@@ -5,9 +5,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowQuestComponent } from './components/quest/show-quest/show-quest.component';
-import { MapComponent } from './components/map/map.component';
 import { FicheComponent } from './components/Character/fiche/fiche.component';
 import { CommonModule } from '@angular/common';
+import { DungeonComponent } from './components/map/dungeon/dungeon.component';
+import { MapComponent } from './components/map/mainland/map.component';
+import { NgForInDirective } from './directive/ng-for-in/ng-for-in.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CommonModule } from '@angular/common';
     ShowQuestComponent,
     MapComponent,
     FicheComponent,
+    DungeonComponent,
+    NgForInDirective,
     ],
   imports: [
     BrowserModule,

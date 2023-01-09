@@ -1,0 +1,56 @@
+#all {
+        display: flex;
+        flex-direction: column;
+    }
+    
+.panel {
+        background-color: lightgrey;
+        border: solid 1px;
+        width: 210px;
+        height: 500px;
+        float: left
+    }
+    .AllMap{
+        //background-color: rgb(132, 132, 132);
+        position: relative;
+        background-color: rgb(46, 136, 131);
+        background-image: url('../../../../assets/gif/map/dungeon/bground.gif');
+        float: left;
+        background-size: 100%;
+        }
+        
+.RealMap{
+        position:absolute ;
+}
+
+.char {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+.DungeonArea{
+        position: absolute;
+        background-size: 100%;
+}
+.ground_cell{
+        position: absolute;
+        }
+.ground_cell:hover{
+        position: absolute;
+        background-image: url('../../../../assets/gif/map/target.gif');
+        background-size: 100%;
+        }
+
+
+.door_n_open{
+        position:absolute ;
+        background-image: url('../../../../assets/gif/map/dungeon/door_n_open.gif');
+        background-size: 100%;   
+}
+.door_n_close{
+        position:absolute ;
+        background-image: url('../../../../assets/gif/map/dungeon/door_n_close.gif');
+        background-size: 100%;   
+}
+

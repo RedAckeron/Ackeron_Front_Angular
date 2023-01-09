@@ -1,47 +1,59 @@
 <div class="all">
-    <div class="panel"></div>
-
-    
+    <div class="panel">
+        Scale :
+        <button (click)=this.SetScale(16)>16</button>
+        <button (click)=this.SetScale(24)>24</button>
+        <button (click)=this.SetScale(32)>32</button>
+        <button (click)=this.SetScale(48)>48</button>
+        <button (click)=this.SetScale(64)>64</button>
         
-    
-    <div class="map"
-        [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
+        <div>Position : {{Hero.localisator.locAX+"/"+Hero.localisator.locAY}}</div>
+        <div>Target : {{Hero.TargetLocalisator.locAX+"/"+Hero.TargetLocalisator.locAY}}</div>
+
+        <div class="CharStatus" *ngIf="Hero.status=='move'">Status : 🥾 Marche</div>
+        <div class="CharStatus" *ngIf="Hero.status=='idle'">Status : 🪑 Attend</div>
+        <div class="CharStatus" *ngIf="Hero.status=='death'">Status : ☠ Mort</div>
+        <div>Refresh : {{Hero.coolDown}}</div>
+    </div>
+      
+    <div class="map"[ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
         <!-- Affichage des elements du decor  -->
         <div *ngFor="let item of planet.Areas">
-            <div class="MapElement"
-                [ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale}">
-                <div (click)="SetAreaTarget(item.idArea)">
-                    <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
-                </div>
+            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale, 'width.px':scale, 'height.px':scale}" (click)="SetAreaTarget(item)">
+                <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
             </div>
-        </div>
-
-        <!-- Affichage des Hero  -->
-        <div class="char"
-            [ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
-            <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
         </div>
 
         <!-- Affichage des mobs  -->
         <div *ngFor="let mob of planet.Horde">
-            <div>
+           
             <div (click)="SetMobTarget(mob.id)" class="char"
                 [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
                 <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link">
             </div>
         </div>
+        <!-- Affichage des Hero  -->
+        <div class="char"[ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
+            <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
         </div>
+        <!-- Affichage de la destination du joueur -->
+        <div class="ground_cell_target" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(Hero.TargetLocalisator.locAX*scale),'top.px':(Hero.TargetLocalisator.locAY*scale)}"></div>
     </div>
-    
+
     <div class="panel" *ngIf="MobTarget==0">
-        <div *ngFor="let mob of planet.Horde">
+        <div>Area Name : {{this.planet.CurentArea.name}}</div>
+        <div>Area Loc : {{this.planet.CurentArea.localisator.locAX+" / "+this.planet.CurentArea.localisator.locAY}}</div>
+        
+        <div>Area Main Trigger : {{this.planet.CurentArea.mainTrigger}}</div>
+        <div>Area Sub Trigger : {{this.planet.CurentArea.subTrigger}}</div>
+
+        <!-- <div *ngFor="let mob of planet.Horde">
             <div class="BoxMob">
                 <div class="BoxMobImg">
                     <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width="24px" alt="Link">
                 </div>
-        
                 <div class="BoxMobName">
-                    {{mob.info.name}}
+                    {{mob.info.name+" : "+mob.localisator.localisatorId}}
                 </div>
             </div>
             <div class="BoxPvMax">
@@ -53,6 +65,7 @@
                 <div class="BoxPw" [ngStyle]="{'width.px':((mob.stat.pw/mob.stat.pwMax*100)*2)}"></div>
             </div>
         </div>
+         -->
     </div>
 
 

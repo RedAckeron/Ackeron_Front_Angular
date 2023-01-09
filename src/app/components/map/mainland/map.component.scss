@@ -5,10 +5,9 @@
 
 .map {
     position: relative;
-    background-image: url('../../../assets/gif/bground/sand.gif');
+    background-image: url('../../../../assets/gif/map/mainland/bground/sand.gif');
     flex-direction: column;
     border: solid 1px;
-    max-width: 500px;
     float: left;
 }
 
@@ -44,9 +43,15 @@
 
 .MapElement {
     position: absolute;
+    height:  auto;
 }
 
-
+.MapElement:hover {
+    //position: absolute;
+    background-image: url('../../../../assets/gif/map/target.gif');
+    background-size: 100%;
+    //background-color: yellow;
+}
 
 .BoxMob{
     width: 182px;
@@ -127,3 +132,18 @@ height: 0px;
     height: 24px;
     font-size: 24px;
 }
+
+.ground_cell{
+    position: absolute;
+    }
+.ground_cell_target{
+    position: absolute;
+    background-image: url('../../../../assets/gif/map/target_green.gif');
+    background-size: 100%;
+} 
+.ground_cell:hover{
+    position: absolute;
+    background-image: url('../../../../assets/gif/map/target.gif');
+    background-size: 100%;
+    }
+    

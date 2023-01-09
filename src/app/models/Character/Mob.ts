@@ -6,13 +6,16 @@ import { Info } from '../Info.model';
 import { Stat } from '../Stat.model';
 import { Power } from '../Power.model';
 import { Resist } from '../Resist.model';
+import { CharacterService } from 'src/app/services/character.service';
+import { LocalisatorRepo } from 'src/app/repositories/localisator-repo.service';
+import { MapService } from 'src/app/services/map.service';
 
 export class Mob extends Character {
     stat: Stat;
     power : Power;
     resist : Resist;
-    constructor(data?: Partial<{ id: number, tsin: number, info: Info, localisator: Localisator, stat: Stat, power: Power, resist: Resist }>) {
-        super(data?.id!, 0, data?.info!, data?.localisator!)
+    constructor(data?: Partial<{ id: number, tsin: number,coolDown:number, info: Info, localisator: Localisator,_locaRepo:LocalisatorRepo, stat: Stat, power: Power, resist: Resist,_characterService:CharacterService,_mapService:MapService }>) {
+        super(data?.id!, 0,data?.coolDown!, data?.info!, data?.localisator!,data?._characterService!,data?._mapService!)
         this.stat = data && data.stat || new Stat(1, 0, 0, 0, 0, 0, 0, 0, 0,1000);
         this.power=data && data.power || new Power();
         this.resist=data && data.resist || new Resist();

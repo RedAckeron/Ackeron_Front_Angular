@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { MapPlanetRepoService } from "src/app/repositories/Map/map-planet-repo.service";
 import { MobRepoService } from "src/app/repositories/Mob/mob-repo.service";
 import { Mob } from "../Character/Mob";
+import { Localisator } from "../Localisator";
 import { Area } from "./Area.model";
 
 export class Planet {
@@ -11,6 +12,7 @@ export class Planet {
     Name:string;
     MaxX:number;
     MaxY:number;
+    CurentArea:Area=new Area(0,'',new Localisator(0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),'',true,'','');
     Areas : Area[];
     Horde:Array<Mob>;
     
@@ -22,45 +24,5 @@ export class Planet {
         this.Areas=Areas;
         this.Horde=Mobs;
     }
-/*
-    public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
-        let TabArea : Area[]=[];
-        
-        _mapRepo.GetMap(IdPlanet).subscribe( {
-          next: (res) => {
-            TabArea=res;
-            return TabArea;
-            },
-          error: () => {},
-          complete: () => {
-            this.Areas=TabArea;
-            //console.log(this.Areas);
-          }
-        })
-        return TabArea;
-      }
-      */
-/*
-    public GetMob(_mobRepo : MobRepoService):Mob[]{
-        let TabMob : Mob[]=[];
-        _mobRepo.ReadAllOfPlanet(this.IdPlanet).subscribe( {
-        next: (res) => {
-          console.log(res);
-          
-          TabMob=res;
-          console.log(TabMob);
-          
-          return TabMob;
 
-
-
-        },
-          error: () => {},
-          complete: () => {
-            this.Horde=TabMob;
-          }
-        })
-        return TabMob;
-      }
-*/
 }

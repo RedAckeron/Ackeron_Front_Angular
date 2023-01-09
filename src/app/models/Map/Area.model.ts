@@ -1,7 +1,7 @@
 import { Localisator } from "../Localisator";
 
 
-export class Area {
+export class Area implements Iterable<any> {
     idArea:number;
     name:string;
     localisator:Localisator
@@ -18,5 +18,8 @@ export class Area {
         this.reachable=Reachable;
         this.mainTrigger=MainTrigger;
         this.subTrigger=SubTrigger;
+    }
+    [Symbol.iterator](): Iterator<any, any, undefined> {
+        throw new Error("Method not implemented.");
     }
 }

@@ -1,4 +1,5 @@
 export class Localisator{
+    localisatorId:number=0;
     locUId:number=0;
 
     locSId:number=0;
@@ -17,14 +18,15 @@ export class Localisator{
     locZX:number=0;
     locZY:number=0;
 
-    constructor(locUId:number, 
+    constructor(localisatorId:number,locUId:number, 
         locSId:number,LocSX:number,LocSY:number,
         locPId:number,locPX:number,locPY:number,
         locAId:number,locAX:number,locAY:number,
         locZId:number,locZX:number,locZY:number,
 
         ){
-       
+        this.localisatorId=localisatorId;
+
         this.locUId=locUId;
 
         this.locSId=locSId;

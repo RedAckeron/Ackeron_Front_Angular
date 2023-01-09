@@ -1,0 +1,38 @@
+.InventoryBoxContainer{
+        border-radius: 5px;
+   width:340px;
+   background-color: lightslategray;
+   font-size: 22px;
+   margin: 5px;
+   padding: 5px;
+
+   border :solid 1px;
+}
+
+.InventoryBoxAll{
+ width:320px;
+ display: flex;
+}
+
+.InventoryBoxCase{
+width: 32px;
+height:32px;
+border-radius: solid 1px;
+background-color: lightgrey;
+border-radius: 3px;
+border: solid 1px;
+margin: 1px;
+position: relative;
+}
+
+.InventoryBoxCase:hover{
+background-color:cornflowerblue;
+border-color: red ;
+}
+
+.InventoryBoxCaseQt{
+font-size: 14px;
+position: absolute;
+left: 20px;
+top: 18px;
+}

@@ -20,6 +20,5 @@ export class Stat {
     this.pw=pw;
     this.pwMax=pwMax;
     this.timeStampSimul=timeStampSimul;
-    this.coolDown=coolDown;
     }
 }

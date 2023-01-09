@@ -1,0 +1,48 @@
+<div class="all">
+        <div class="panel">
+
+        </div>
+
+
+        <div class="AllMap" [ngStyle]="{'width.px':((256/16)*scale),'height.px':(((160/16))*scale)}">
+                <div>Dungeon Lvl : {{0}}</div>
+                <div class="door_n_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+                <div class="door_n_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                
+                <div class="door_s_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                <div class="door_s_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+                
+                <div class="door_w_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+                <div class="door_w_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                
+                <div class="door_e_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                <div class="door_e_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+                
+                <div class="RealMap" [ngStyle]="{'width.px':((240/16)*scale),'height.px':(((144/16))*scale),'left.px':8/16*scale,'top.px':8/16*scale}">
+                        <div *ngFor="let item of this.planet.Areas">
+
+                                <div class="DungeonArea" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(item.localisator.locAX*scale),'top.px':(item.localisator.locAY*scale)}" (click)="SetTarget(item.localisator.locAX,item.localisator.locAY)">
+                                        <img src="../../../../assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
+                                </div>
+                        </div>
+
+                        <div *ngFor='let x of [ 1, 2, 3, 4,5,6,7,8,9,10,11,12,13]; let i = index'>
+                                <div *ngFor='let y of [ 1, 2, 3, 4,5,6,7]; let i = index'>
+                                <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(x*scale),'top.px':(y*scale)}" (click)="SetTarget(x,y)"></div>
+                                </div>
+                        </div>
+
+                        <div class="char"
+                        [ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
+                        <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
+                        </div>
+                        
+                        <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(7*scale),'top.px':(0*scale)}" (click)="SetTarget(7,0)">7.0</div>
+                        <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(0*scale),'top.px':(4*scale)}" (click)="SetTarget(0,4)">0.4</div>
+                        <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(7*scale),'top.px':(8*scale)}" (click)="SetTarget(7,8)">7.8</div>
+                        <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(14*scale),'top.px':(4*scale)}" (click)="SetTarget(14,4)">14.4</div>
+
+                </div>
+        </div>
+</div>
+
