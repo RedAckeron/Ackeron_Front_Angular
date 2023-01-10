@@ -14,7 +14,9 @@ export class FicheComponent implements OnInit {
 
   ngOnInit(): void {
     //recuperation de l inventaire du Hero
-    this.Inventory=this._inventoryService.Get(1);
-    
+    if(localStorage.getItem('IdChar'))
+    {
+      this.Inventory=this._inventoryService.Get(1);
+    }
   }
 }

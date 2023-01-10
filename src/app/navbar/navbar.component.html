@@ -1,3 +1,9 @@
 <nav>
-    <div class="main">Ackeron Game -- <a routerLink="charpanel">Fiche Perso</a> -- <a routerLink="map">Map</a></div>
+    <div class="main">
+        <div class="MainBtn"><a routerLink="/">Zelda</a></div>
+        <div class="link"><a routerLink="charpanel">Fiche Perso</a></div>
+        <div class="link"><a routerLink="map">Map</a></div>
+        <div class="link"><a routerLink="quest">Journal de quete</a></div>
+        <div *ngIf="IdChar!='0'">User : {{IdChar}}</div>
+        </div>
 </nav>

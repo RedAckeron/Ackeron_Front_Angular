@@ -1,17 +1,28 @@
-.InventoryBoxContainer{
+.AllComposant
+        {
+                width:100uv;
+                align-content: flex-start;
+                flex-wrap: wrap;   
+        }
+.BoxContainer{
+        width:330px;
+        background-color: lightslategray;
+        font-size: 22px;
+        margin: 5px;
+        padding: 5px;
         border-radius: 5px;
-   width:340px;
-   background-color: lightslategray;
-   font-size: 22px;
-   margin: 5px;
-   padding: 5px;
-
-   border :solid 1px;
+        border :solid 1px;
 }
 
-.InventoryBoxAll{
- width:320px;
+.BoxAll{
+ width:325px;
  display: flex;
+ align-content: flex-start;
+ flex-wrap: wrap;
+ background-color: lightgray;
+ border-radius: 5px;
+ padding: 3px;
+
 }
 
 .InventoryBoxCase{
@@ -23,6 +34,7 @@ border-radius: 3px;
 border: solid 1px;
 margin: 1px;
 position: relative;
+
 }
 
 .InventoryBoxCase:hover{

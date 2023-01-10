@@ -10,6 +10,7 @@ export class Info {
     citizenPlanet:number;
     img:string;
     orientation:string="nord";
+    strike:boolean=false;
    
  constructor(infoId:number,name:string,race:number,sexe:number,classe:number,gold:number,citizenPlanet:number,img:string,orientation:string)
     {

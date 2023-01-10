@@ -7,6 +7,17 @@
         <button (click)=this.SetScale(48)>48</button>
         <button (click)=this.SetScale(64)>64</button>
         
+        <div class="BoxPvMax">
+            <div class="BoxText">{{this.Hero.stat.pv +" / "+this.Hero.stat.pvMax}}</div>
+            <div class="BoxPv" [ngStyle]="{'width.px':((this.Hero.stat.pv/this.Hero.stat.pvMax*100)*2)}"></div>
+        </div>
+        <div class="BoxPwMax">
+            <div class="BoxText">{{this.Hero.stat.pw +" / "+this.Hero.stat.pwMax}}</div>
+            <div class="BoxPw" [ngStyle]="{'width.px':((this.Hero.stat.pw/this.Hero.stat.pwMax*100)*2)}"></div>
+        </div>
+
+
+
         <div>Position : {{Hero.localisator.locAX+"/"+Hero.localisator.locAY}}</div>
         <div>Target : {{Hero.TargetLocalisator.locAX+"/"+Hero.TargetLocalisator.locAY}}</div>
 
@@ -15,27 +26,29 @@
         <div class="CharStatus" *ngIf="Hero.status=='death'">Status : ☠ Mort</div>
         <div>Refresh : {{Hero.coolDown}}</div>
     </div>
-      
+
     <div class="map"[ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
         <!-- Affichage des elements du decor  -->
         <div *ngFor="let item of planet.Areas">
-            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale, 'width.px':scale, 'height.px':scale}" (click)="SetAreaTarget(item)">
+            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale, 'widt.px':scale, 'height.px':scale}" (click)="SetAreaTarget(item)">
                 <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
             </div>
         </div>
 
         <!-- Affichage des mobs  -->
         <div *ngFor="let mob of planet.Horde">
-           
             <div (click)="SetMobTarget(mob.id)" class="char"
                 [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
-                <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link">
+                <div *ngIf="mob.status=='death'" class="MobDeath"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
+                <div *ngIf="mob.status!='death'" class="Mob"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
             </div>
         </div>
+
         <!-- Affichage des Hero  -->
         <div class="char"[ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
-            <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
+            <img src="/assets/gif/{{Hero.info.img}}/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
         </div>
+       
         <!-- Affichage de la destination du joueur -->
         <div class="ground_cell_target" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(Hero.TargetLocalisator.locAX*scale),'top.px':(Hero.TargetLocalisator.locAY*scale)}"></div>
     </div>
@@ -79,6 +92,9 @@
             <div class="BoxMobName">
                 {{this.planet.Horde[MobTarget-1].info.name}}
             </div>
+
+            <div *ngIf="this.planet.Horde[MobTarget-1].status=='death'">Status : Mort</div>
+            <div *ngIf="this.planet.Horde[MobTarget-1].status!='death'">Status : En Vie</div>
         </div>
         <div class="BoxPvMax">
             <div class="BoxText">{{this.planet.Horde[MobTarget-1].stat.pv +" / "+this.planet.Horde[MobTarget-1].stat.pvMax}}</div>
@@ -89,7 +105,7 @@
             <div class="BoxPw" [ngStyle]="{'width.px':((this.planet.Horde[MobTarget-1].stat.pw/this.planet.Horde[MobTarget-1].stat.pwMax*100)*2)}"></div>
         </div>
 
-
+        
         <div class="elem_col">
             <div class="elem_col_power">Power</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/triforce.gif" width=24 alt="Elementaire Air"></div>
@@ -147,8 +163,7 @@
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
 
-        <button>Attaquer</button>
-        <button>Voler</button>
+        <div *ngIf="Hero.info.strike==true"><button (click)="strike(this.planet.Horde[MobTarget-1].id)">Attaquer </button></div>
             
     </div>
 </div>

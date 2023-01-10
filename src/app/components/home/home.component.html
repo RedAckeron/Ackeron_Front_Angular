@@ -1,2 +1,12 @@
-<p>home works!</p>
-<div></div>
+<div class="splash">
+        <div class="BoxWhite">
+                <div class="main-connect">
+                        <div class="connect" *ngIf="!IdChar">
+                             <button (click)="login()">Login</button>
+                        </div>
+                        <div class="connect" *ngIf="IdChar">
+                                <button (click)="logout()">Logout</button>
+                        </div>
+                </div>
+        </div>
+</div>

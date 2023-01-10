@@ -1,9 +1,25 @@
 
 <!-- affichage de l inventaire -->
-<div class="InventoryBoxContainer">Inventaire
-        <div class="InventoryBoxAll">
-                <div class="InventoryBoxCase" *ngFor="let item of this.Inventory |async"><img src="/assets/gif/{{item.img}}" width={{32}} alt="{{item.name}}">
-                <div class="InventoryBoxCaseQt">{{item.qt}}</div>
+
+<div class="AllComposant">
+        <div class="BoxContainer">Information
+                <div class="BoxAll">
+                        Name:
+                        
+                        
+                </div>
+        </div>
+        <div class="BoxContainer">Statistique
+                <div class="BoxAll">
+                        Pv : 100/100
+                        Pm : 100/100
+                </div>
+        </div>
+        <div class="BoxContainer">Inventaire
+                <div class="BoxAll">
+                        <div class="InventoryBoxCase" *ngFor="let item of this.Inventory |async"><img src="/assets/gif/{{item.img}}" width={{32}} alt="{{item.name}}">
+                                <div class="InventoryBoxCaseQt">{{item.qt}}</div>
+                        </div>
                 </div>
         </div>
 </div>

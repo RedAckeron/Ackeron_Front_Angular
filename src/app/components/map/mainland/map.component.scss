@@ -24,11 +24,21 @@
     left: 0px;
     top: 0px;
 }
+.char:hover{
+    background-color: rgb(79, 153, 50);
+}
 .Mob{
     position: absolute;
     left: 0px;
     top: 0px;
 }
+.MobDeath{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.5;
+}
+
 .MobSelected{
     position: absolute;
     left: 0px;

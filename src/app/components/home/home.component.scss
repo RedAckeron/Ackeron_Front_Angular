@@ -1,0 +1,26 @@
+.splash{
+        position: relative;
+        width:800px;
+        height:450px;
+        background-image: url("../../../assets/gif/splash.gif");
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-direction: column;
+        vertical-align:bottom;
+
+}
+.BoxWhite{
+        position: absolute;
+        background-color: white;
+        display: inline;
+        opacity: 0.8;
+        width:400px;
+        height:80px;
+        top: 300px;
+        border-radius: 5px;
+        border: solid 1px;
+}
+.BoxForm{
+        opacity: 1;
+}

@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Character } from '../models/Character/Character';
 import { Hero } from '../models/Character/Hero';
+import { Mob } from '../models/Character/Mob';
 import { Localisator } from '../models/Localisator';
 import { Area } from '../models/Map/Area.model';
 import { Planet } from '../models/Map/Planet.model';
@@ -17,8 +18,69 @@ import { MathService } from './math.service';
 })
 export class CharacterService {
 
-  constructor(private _characterRepo: CharacterRepoService,private _localisatorRepo:LocalisatorRepo) { }
-  //#####################################################################################################################
+  constructor(private _characterRepo: CharacterRepoService,private _localisatorRepo:LocalisatorRepo) {
+  }
+public MobStrike(mob:Mob,hero:Hero){
+    let atq=(mob.stat.strenght+(mob.stat.strenght*(mob.power.eau/100)));
+    let def=(hero.stat.defence+(hero.stat.defence*(hero.resist.eau/100)));
+    hero.stat.pv-=(atq-def);
+    console.log((atq-def));
+
+    
+    
+}
+//#####################################################################################################################
+public CheckMobProche(hero:Hero,mob:Mob[]):Mob
+{
+    let mobSelected!:Mob;
+    let distancerepere:number=99;
+    mob.forEach(element => {
+        //console.log("Le mob "+element.info.name+" se trouve a la loc : "+element.localisator.locAX+"/"+element.localisator.locAY);
+        let difx=Math.abs(hero.localisator.locAX-element.localisator.locAX);
+        let dify=Math.abs(hero.localisator.locAY-element.localisator.locAY);
+        //console.log(difx+dify);
+        if((difx+dify)<distancerepere)
+        {
+            distancerepere=(difx+dify);
+            mobSelected=element;
+        }
+    });
+    return mobSelected;
+}
+//#####################################################################################################################
+public CheckDistMobProche(hero:Hero,mob:Mob):number
+{
+
+    let mobSelected!:Mob;
+    let distancerepere:number=99;
+        let difx=Math.abs(hero.localisator.locAX-mob.localisator.locAX);
+        let dify=Math.abs(hero.localisator.locAY-mob.localisator.locAY);
+        //console.log(difx+dify);
+        if((difx+dify)<distancerepere)
+        {
+            distancerepere=(difx+dify);
+        }
+   //console.log("Le mob se trouve a "+distancerepere+" cases");
+   
+    return distancerepere;
+}
+ //#####################################################################################################################
+public CheckDistHeroProche(heroloc:Localisator,mob:Character):number
+{
+
+    let HeroSelected!:Hero;
+    let distancerepere:number=99;
+        let difx=Math.abs(heroloc.locAX-mob.localisator.locAX);
+        let dify=Math.abs(heroloc.locAY-mob.localisator.locAY);
+        if((difx+dify)<distancerepere)
+        {
+            distancerepere=(difx+dify);
+        }
+   //console.log("Le hero se trouve a "+distancerepere+" cases");
+   
+    return distancerepere;
+}
+//#####################################################################################################################
 public ReadLocalisator(id: number):Localisator {
     let result =new Localisator(0,1,1,1,1,1,1,1,1,1,1,1,1,0);
     this._localisatorRepo.Read(id).subscribe({
@@ -45,7 +107,7 @@ public CheckMoveOrientation(AllMove:string,origin : Localisator,destination : Lo
   if(origin.locAX>=destination.locAX)AllMove=AllMove.replace("e","");
   if(origin.locAX<=destination.locAX)AllMove=AllMove.replace("w","");
   if(origin.locAY>=destination.locAY)AllMove=AllMove.replace("s","");
-  if(origin.locAY<=destination.locAY)AllMove=AllMove.replace("n","");
+  if(origin.locAY<=destination.locAY)AllMove=AllMove.replace("n","");  
   return AllMove
 }
 //#####################################################################################################################
@@ -102,7 +164,7 @@ public CheckMoveColision(character:Character,AllMove:string,planet : Planet):str
 public SelectMove(character:Character,AllMove: string): Localisator {
   let math = new MathService();
   let moveok = false;
-  let LocalisatorTarget = character.localisator;
+  let {locAX, locAY} = character.localisator;
 
    
   while (!moveok) {
@@ -116,29 +178,29 @@ public SelectMove(character:Character,AllMove: string): Localisator {
 
       switch (DirectionTry) {
           case 'n': {
-              LocalisatorTarget.locAY--;
-              character.info.orientation = 'nord';
+              locAY--;
+              character.info.orientation = 'n';
           } break;
           case 's': {
-              LocalisatorTarget.locAY++;
-              character.info.orientation = 'sud';
+              locAY++;
+              character.info.orientation = 's';
           } break;
           case 'w': {
-              LocalisatorTarget.locAX--;
-              character.info.orientation = 'ouest';
+              locAX--;
+              character.info.orientation = 'w';
           } break;
           case 'e': {
-              LocalisatorTarget.locAX++;
-              character.info.orientation = 'est';
+              locAX++;
+              character.info.orientation = 'e';
           } break;
       }
       moveok = true;
   }
-  return LocalisatorTarget
+  return {locAX, locAY} as Localisator
 };
 //#####################################################################################################################
 public ExecMove(character:Character,LocalisatorTarget: Localisator,planet:Planet){
-    //planet.CurentArea=planet.Areas[];
+    // planet.CurentArea=planet.Areas[];
     character.localisator = LocalisatorTarget;
     //on met a jours la position du joueur dans l API
     this._localisatorRepo.Update(character.localisator);
@@ -149,6 +211,4 @@ public ExecMove(character:Character,LocalisatorTarget: Localisator,planet:Planet
     }
   }
 //#####################################################################################################################
-
-
 }

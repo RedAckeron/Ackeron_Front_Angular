@@ -4,12 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ShowQuestComponent } from './components/quest/show-quest/show-quest.component';
 import { FicheComponent } from './components/Character/fiche/fiche.component';
 import { CommonModule } from '@angular/common';
 import { DungeonComponent } from './components/map/dungeon/dungeon.component';
 import { MapComponent } from './components/map/mainland/map.component';
 import { NgForInDirective } from './directive/ng-for-in/ng-for-in.directive';
+import { ShowQuestComponent } from './components/Character/quest/show-quest/show-quest.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NgForInDirective } from './directive/ng-for-in/ng-for-in.directive';
     FicheComponent,
     DungeonComponent,
     NgForInDirective,
+    HomeComponent,
     ],
   imports: [
     BrowserModule,

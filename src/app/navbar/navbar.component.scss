@@ -7,5 +7,27 @@ nav{
     padding: 0%;
     margin: 0%;
     width: 100%;
-    background-color: red;
+    height:24px;
+    background-color: rgb(101, 157, 241);
+    display: flex;
+    flex-direction: row;
+}
+
+.MainBtn{
+    background-color: rgb(208, 127, 255);
+    width:200px;
+    height: 22px;
+    text-align: center;    
+    border:solid 1px;
+    }
+.link{
+background-color: aquamarine;
+width:200px;
+height: 22px;
+text-align: center;    
+border:solid 1px;
+}
+.link:hover{
+    background-color: rgb(56, 240, 178);
+    border:solid 1px;
 }
