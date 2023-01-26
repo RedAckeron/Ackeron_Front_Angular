@@ -10,9 +10,12 @@ export class Info {
     citizenPlanet:number;
     img:string;
     orientation:string="nord";
+    status:string="idle";
+    IdTargetMob:number=0;
     strike:boolean=false;
+
    
- constructor(infoId:number,name:string,race:number,sexe:number,classe:number,gold:number,citizenPlanet:number,img:string,orientation:string)
+ constructor(infoId:number,name:string,race:number,sexe:number,classe:number,gold:number,citizenPlanet:number,img:string,orientation:string,status:string)
     {
     this.infoId=infoId;
     this.name=name;
@@ -23,5 +26,6 @@ export class Info {
     this.citizenPlanet=citizenPlanet;
     this.img=img;
     this.orientation=orientation;
+    this.status=status;
     }
 }

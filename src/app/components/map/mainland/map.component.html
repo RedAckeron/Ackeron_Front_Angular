@@ -21,10 +21,10 @@
         <div>Position : {{Hero.localisator.locAX+"/"+Hero.localisator.locAY}}</div>
         <div>Target : {{Hero.TargetLocalisator.locAX+"/"+Hero.TargetLocalisator.locAY}}</div>
 
-        <div class="CharStatus" *ngIf="Hero.status=='move'">Status : 🥾 Marche</div>
-        <div class="CharStatus" *ngIf="Hero.status=='idle'">Status : 🪑 Attend</div>
-        <div class="CharStatus" *ngIf="Hero.status=='death'">Status : ☠ Mort</div>
-        <div>Refresh : {{Hero.coolDown}}</div>
+        <div class="CharStatus" *ngIf="Hero.info.status=='move'">Status : 🥾 Marche</div>
+        <div class="CharStatus" *ngIf="Hero.info.status=='idle'">Status : 🪑 Attend</div>
+        <div class="CharStatus" *ngIf="Hero.info.status=='death'">Status : ☠ Mort</div>
+        <div>Refresh : {{Hero.stat.coolDown}}</div>
     </div>
 
     <div class="map"[ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
@@ -39,8 +39,8 @@
         <div *ngFor="let mob of planet.Horde">
             <div (click)="SetMobTarget(mob.id)" class="char"
                 [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
-                <div *ngIf="mob.status=='death'" class="MobDeath"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
-                <div *ngIf="mob.status!='death'" class="Mob"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
+                <div *ngIf="mob.info.status=='death'" class="MobDeath"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
+                <div *ngIf="mob.info.status!='death'" class="Mob"><img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} alt="Link"></div>
             </div>
         </div>
 
@@ -81,7 +81,6 @@
          -->
     </div>
 
-
     <div class="panel" *ngIf="MobTarget!=0">
         <div class="BoxMob">
 
@@ -93,8 +92,8 @@
                 {{this.planet.Horde[MobTarget-1].info.name}}
             </div>
 
-            <div *ngIf="this.planet.Horde[MobTarget-1].status=='death'">Status : Mort</div>
-            <div *ngIf="this.planet.Horde[MobTarget-1].status!='death'">Status : En Vie</div>
+            <div *ngIf="this.planet.Horde[MobTarget-1].info.status=='death'">Status : Mort</div>
+            <div *ngIf="this.planet.Horde[MobTarget-1].info.status!='death'">Status : En Vie</div>
         </div>
         <div class="BoxPvMax">
             <div class="BoxText">{{this.planet.Horde[MobTarget-1].stat.pv +" / "+this.planet.Horde[MobTarget-1].stat.pvMax}}</div>
@@ -105,7 +104,6 @@
             <div class="BoxPw" [ngStyle]="{'width.px':((this.planet.Horde[MobTarget-1].stat.pw/this.planet.Horde[MobTarget-1].stat.pwMax*100)*2)}"></div>
         </div>
 
-        
         <div class="elem_col">
             <div class="elem_col_power">Power</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/triforce.gif" width=24 alt="Elementaire Air"></div>
@@ -117,21 +115,25 @@
             <div class="elem_col_img"><img src="/assets/gif/elementaire/eau.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/feu.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/air.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/terre.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/lumiere.gif" width=24 alt="Elementaire Air"></div>
@@ -142,11 +144,13 @@
             <div class="elem_col_img"><img src="/assets/gif/elementaire/tenebre.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/tranchant.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/ecrasant.gif" width=24 alt="Elementaire Air"></div>
@@ -157,6 +161,7 @@
             <div class="elem_col_img"><img src="/assets/gif/elementaire/percant.gif" width=24 alt="Elementaire Air"></div>
             <div class="elem_col_resist">{{this.planet.Horde[MobTarget-1].resist.air}}</div>
         </div>
+        
         <div class="elem_col">
             <div class="elem_col_power">{{this.planet.Horde[MobTarget-1].power.air}}</div>
             <div class="elem_col_img"><img src="/assets/gif/elementaire/poison.gif" width=24 alt="Elementaire Air"></div>

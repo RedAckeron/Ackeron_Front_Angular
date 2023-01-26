@@ -8,22 +8,21 @@ import { HttpClient } from "@angular/common/http";
 import { MapService } from "src/app/services/map.service";
 import { Hero } from "./Hero";
 import { Mob } from "./Mob";
+import { Stat } from "../Stat.model";
 
 export abstract class Character {
     id: number;
     tsIn: number;
-    info: Info = new Info(0, '', 0, 0, 0, 0, 0, "", "n");
+    info: Info = new Info(0, '', 0, 0, 0, 0, 0, "", "n","idle");
+    stat:Stat = new Stat(0,0,0,100,100,0,100,100,100,100,0,1000);
     localisator: Localisator = new Localisator(0,0, 0, 0, 0, 1, 0, 0, 0, 9, 11, 0, 0, 0);
     TargetLocalisator : Localisator = this.localisator;
-    coolDown:number=1000;
-    status:string="idle";
-    private timer: any | undefined;
 
-    constructor(id: number, tsin: number,coolDown:number, info: Info, localisator: Localisator,private _characterService:CharacterService,private _mapService:MapService) {
+    constructor(id: number, tsin: number,coolDown:number, stat:Stat,info: Info, localisator: Localisator,private _characterService:CharacterService,private _mapService:MapService) {
         this.id = id;
         this.tsIn = tsin;
-        this.coolDown=coolDown;
-        this.info = info
+        this.stat = stat;
+        this.info = info;
         this.localisator = localisator;
     }
 
@@ -37,7 +36,7 @@ export abstract class Character {
     //#####################################################################################################################
     public RandomMove(planet: Planet,heroLocalisator:Localisator) {
         
-        this.status="move";
+        this.info.status="move";
         let AllMove:string="nswe";//on remet les 4 directions possible 
         
         AllMove=this._characterService.CheckMoveBorder(this,AllMove,planet);//on retirer des choix possible ceux qui nous enverrais en dehors de la map
@@ -55,19 +54,13 @@ export abstract class Character {
             {                
                 // console.log("[MOBZ]=>Le hero est a "+dist+"cases : j avance ");
                 this._characterService.ExecMove(this,loctarget,planet);
-                return true;
+                //return true;
             }
         else 
             {
            // console.log("[MOBZ]=>Le hero est a "+dist+"cases : j n avance pas je Frappe");
-                return false;
+               // return false;
             }
-
-            
-
-        
-
-        //}, this.coolDown);
     }
     //#####################################################################################################################
     public TargetedMove(targetloc : Localisator,planet:Planet){
@@ -75,9 +68,9 @@ export abstract class Character {
         this.TargetLocalisator.locAY=targetloc.locAY;
        
             if((this.TargetLocalisator.locAX==this.localisator.locAX)&&(this.TargetLocalisator.locAY==this.localisator.locAY)){
-                this.status="idle";
+                this.info.status="idle";
             }
-            else this.status="move";
+            else this.info.status="move";
                 
                 //this.status="move";
                 let AllMove:string="nswe";//on remet les 4 directions possible 

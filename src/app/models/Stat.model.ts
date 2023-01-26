@@ -12,8 +12,10 @@ export class Stat {
     pw:number=100;
     pwMax:number=100;
     timeStampSimul:number=5;
-    timer:any;
+    timer: any | undefined=1000;
     coolDown:number=1000;
+
+
  constructor(statsId:number,ptMove:number,ptMoveMax:number,strenght:number,defence:number,xp:number,pv:number,pvMax:number,pw:number,pwMax:number,timeStampSimul:number,coolDown:number)
     {
     this.statsId=statsId;

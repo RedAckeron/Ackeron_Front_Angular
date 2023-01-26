@@ -1,0 +1,56 @@
+<table border=0>
+			<tr><th>type#no</th>
+			<th>date</th>
+			<th>ref_client</th>
+			<th>nom_societe</th>
+			<th>no_tva_pays</th>
+			<th>no_tva_no</th>
+			<th>adresse</th>
+			<th>communication_structure</th>
+			<th>Imputation</th>
+			<th>Montant Htva</th>
+			<th>Payed</th></tr><tr>
+				<td>facit388</td>
+				<td>03/01/2023</td>
+				<td>3797</td>
+				<td>Michele Herregods </td>
+				<td>0</td>
+				<td>0</td>
+				<td>0 , 0 - 0 0 - 0</td>
+				<td>'032300379705</td>
+				<td>700043</td>
+				<td>453,72</td>
+				<td></td></tr><tr>
+				<td>facit390</td>
+				<td>04/01/2023</td>
+				<td>3802</td>
+				<td>DIRECT RESULT SPRL </td>
+				<td>0</td>
+				<td>0</td>
+				<td>0 , 0 - 0 0 - 0</td>
+				<td>'012300380242</td>
+				<td>700041</td>
+				<td>475,00</td>
+				<td></td></tr><tr>
+				<td>facit391</td>
+				<td>05/01/2023</td>
+				<td>3794</td>
+				<td>Maison Croix Rouge </td>
+				<td>0</td>
+				<td>0</td>
+				<td>0 , 0 - 0 0 - 0</td>
+				<td>'032300379402</td>
+				<td>700047</td>
+				<td>90,91</td>
+				<td></td></tr><tr>
+				<td>facit392</td>
+				<td>06/01/2023</td>
+				<td>3809</td>
+				<td>PLANNING FAMILIAL DU BRABANT WALLON </td>
+				<td>0</td>
+				<td>0</td>
+				<td>0 , 0 - 0 0 - 0</td>
+				<td>'032300380917</td>
+				<td>700041</td>
+				<td>73,55</td>
+				<td></td></tr></table>

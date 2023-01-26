@@ -12,11 +12,10 @@ import { MapService } from 'src/app/services/map.service';
 import { Hero } from './Hero';
 
 export class Mob extends Character {
-    stat: Stat;
     power : Power;
     resist : Resist;
     constructor(data?: Partial<{ id: number, tsin: number,coolDown:number, info: Info, localisator: Localisator,_locaRepo:LocalisatorRepo, stat: Stat, power: Power, resist: Resist,_characterService:CharacterService,_mapService:MapService }>) {
-        super(data?.id!, 0,data?.coolDown!, data?.info!, data?.localisator!,data?._characterService!,data?._mapService!)
+        super(data?.id!, 0,data?.coolDown!,data?.stat!, data?.info!, data?.localisator!,data?._characterService!,data?._mapService!)
 
         if (data && data.stat) {
             data.stat.coolDown = 1600;

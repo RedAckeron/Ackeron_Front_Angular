@@ -29,7 +29,7 @@ planet = new Planet(1,"Dungeon Lvl "+this.dungeonlvl, 20, 20, [], [], this._mapR
 
 Hero: Hero
   constructor( private _mapRepo: MapPlanetRepoService, private _charService: CharacterService,private _mapService:MapService) {
-    this.Hero = new Hero(0, 0, 1000,new Info(0, 'Hero', 0, 0, 0, 0, 0, '', 'nord'), new Localisator(0,0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0), new Stat(0, 0, 0,100,100, 0, 0, 0, 0, 0, 0,1000), new Power(), new Resist(), _charService,_mapService);
+    this.Hero = new Hero(0, 0, 1000,new Info(0, 'Hero', 0, 0, 0, 0, 0, '', 'n','idle'), new Localisator(0,0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0), new Stat(0, 0, 0,100,100, 0, 0, 0, 0, 0, 0,1000), new Power(), new Resist(), _charService,_mapService);
 
   }
 
@@ -78,7 +78,7 @@ this.InitDungeon(this.dungeonlvl);
    }
 
 
-   let info=new Info(0,"mob",0,0,0,0,0,"img mob","nord");
+   let info=new Info(0,"mob",0,0,0,0,0,"img mob","n","idle");
    let localisator = new Localisator(0,0,0,0,0,this.planet.IdPlanet,0,0,0,5,7,0,0,0);
    let stat = new Stat(0,0,0,100,100,0,0,0,0,0,0,0);
    let power = new Power();

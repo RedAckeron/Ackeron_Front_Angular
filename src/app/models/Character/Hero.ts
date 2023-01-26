@@ -11,22 +11,20 @@ import { MapService } from "src/app/services/map.service";
 import { Mob } from "./Mob";
 
 export class Hero extends Character {
-    stat:Stat;
     power:Power;
     resist:Resist;
-    IdTargetMob:number=0;
-    striked:number=0;
+    //IdTargetMob:number=0;
+    //striked:number=0;
     constructor(id : number,tsin:number,coolDown:number,info:Info,localisator:Localisator,stat:Stat,power:Power,resist:Resist,_characterService:CharacterService,_mapService:MapService){
-        super(id,0,coolDown,info,localisator,_characterService,_mapService);
+        super(id,0,coolDown,stat,info,localisator,_characterService,_mapService);
         this.id = id;
         this.tsIn=tsin;
-        this.coolDown=coolDown;
+        this.stat=stat;
         this.info=info;
         this.localisator=localisator;
         this.stat=stat;
         this.power=power;
         this.resist=resist;
-        //this.refresh = 1000 
     }
     
 
@@ -34,21 +32,19 @@ export class Hero extends Character {
 public SelectAction(planet:Planet,_characterService:CharacterService){
     //on verifie qui est le mob le plus proche 
 
-
-    
     if(this.stat.pv<1)
     {
         this.info.img="LinkDeath";
         this.stat.timer=null;
-        this.status="death";
+        this.info.status="death";
     }
     else{
         let mobProche = this.CheckMobProche(planet.Horde,_characterService)
         let distmobproche = this.CheckDistMobProche(mobProche,_characterService)
         this.TargetedMove(this.TargetLocalisator,planet);
         if(distmobproche<2)
-        {   this.striked=0;
-            this.IdTargetMob=mobProche.id;
+        {   this.info.strike=false;
+            this.info.IdTargetMob=mobProche.id;
             let orientation=_characterService.CheckMoveOrientation("nswe",this.localisator,mobProche.localisator);
             this.info.strike=true;
             this.info.img="LinkStrike";

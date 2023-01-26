@@ -36,7 +36,7 @@ export class MapComponent implements OnInit {
 
   constructor(private _characterService: CharacterService,private _mapService:MapService, private _mathService: MathService, private _mapRepo: MapPlanetRepoService, private _mobRepo: MobRepoService) {
 
-    this.Hero = new Hero(1, 0, 1000,new Info(0, 'Hero', 0, 0, 0, 0, 0, 'Link', 'n'), new Localisator(0,0, 0, 0, 0, 1, 0, 0, 0, 9, 10, 0, 0, 0) , new Stat(0, 0, 0, 100,10,0, 1000, 1000, 1000, 1000, 0,1000), new Power(), new Resist(),this._characterService,_mapService);
+    this.Hero = new Hero(1, 0, 1000,new Info(0, 'Hero', 0, 0, 0, 0, 0, 'Link', 'n','idle'), new Localisator(0,0, 0, 0, 0, 1, 0, 0, 0, 9, 10, 0, 0, 0) , new Stat(0, 0, 0, 100,10,0, 1000, 1000, 1000, 1000, 0,1000), new Power(), new Resist(),this._characterService,_mapService);
     
    
   }
@@ -75,18 +75,36 @@ this.InitActionHero(this.Hero);//on demarre le Hero
   InitActionHero(hero: Hero) {
       if (hero.stat.timer) {clearInterval(hero.stat.timer)};
       hero.stat.timer = setInterval(() => {
+      switch (hero.info.status) {
+        case "idle":
+          console.log("Status : attente");
+          
+          break;
+        case "walking":
+          console.log("Status : Marche");
+          
+          break;
+        case "death":
+          console.log("Status : Mort");
+          break;
+        default:
+          console.log("Status : non pris en charge");
+          
+          break;
+      }
       hero.SelectAction(this.planet,this._characterService);
-      },hero.stat.coolDown);
+      },hero.stat.coolDown || 1000);
       }
 //#####################################################################################################################
   InitActionMob(mob: Mob) {
     //console.log("Planet => "+ mob.stat.coolDown)
     if (mob.stat.timer) {clearInterval(mob.stat.timer)}
     mob.stat.timer = setInterval(() => {
-      mob.SelectAction(this.planet,this.Hero,this._characterService)
-      //mob.RandomMove(this.planet,this.Hero.localisator);
+
+
+      mob.SelectAction(this.planet,this.Hero,this._characterService);
+
     },mob.stat.coolDown || 1000);
-      // mob.StartMove(this.planet, this.Hero.localisator)
     }
  //#####################################################################################################################
   SetMobTarget(IdMob: number) {
@@ -105,7 +123,6 @@ this.InitActionHero(this.Hero);//on demarre le Hero
       console.log("Target defini : " + Area.localisator.locAX+"/"+Area.localisator.locAY);
       this.Hero.TargetedMove(Area.localisator,this.planet);
     }
-    
   }
 //#####################################################################################################################
   SetScale(scale:number)
@@ -116,13 +133,13 @@ this.InitActionHero(this.Hero);//on demarre le Hero
   strike(IdMob:number)
     {
       if(this.planet.Horde[IdMob-1].stat.pv<1)
-      {this.planet.Horde[IdMob-1].status="death";}
+      {this.planet.Horde[IdMob-1].info.status="death";}
       else 
       {
-      if(this.Hero.striked==0)
+      if(this.Hero.info.strike==false)
         {
-          this.planet.Horde[IdMob-1].stat.pv-=this.Hero.stat.strenght;
-          this.Hero.striked++;
+        this.planet.Horde[IdMob-1].stat.pv-=this.Hero.stat.strenght;
+        this.Hero.info.strike=true;
         }
       }
     }
