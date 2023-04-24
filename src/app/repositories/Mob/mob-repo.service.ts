@@ -13,8 +13,6 @@ export class MobRepoService {
   private _url: string = "https://localhost:7122/Mob/";
   constructor(private _httpClient: HttpClient) { }
 
-
-
   /*
     GetMob(): Mob[]
       {
@@ -28,11 +26,8 @@ export class MobRepoService {
 
   */
 
-<<<<<<< HEAD
+
   ReadAllOfPlanet(idPlanet: number): Observable<Mob[]> {
-=======
-    ReadAllOfPlanet(idPlanet: number): Observable<Mob[]> {
->>>>>>> 330af5b4480ae7251ff00f98c51b165d818afe51
     return this._httpClient.get<Mob[]>(this._url + "ReadAllOfPlanet/" + idPlanet);
   }
 
