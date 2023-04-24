@@ -20,14 +20,13 @@ export class CharacterService {
 
   constructor(private _characterRepo: CharacterRepoService,private _localisatorRepo:LocalisatorRepo) {
   }
+
+//#####################################################################################################################
 public MobStrike(mob:Mob,hero:Hero){
     let atq=(mob.stat.strenght+(mob.stat.strenght*(mob.power.eau/100)));
     let def=(hero.stat.defence+(hero.stat.defence*(hero.resist.eau/100)));
     hero.stat.pv-=(atq-def);
     console.log((atq-def));
-
-    
-    
 }
 //#####################################################################################################################
 public CheckMobProche(hero:Hero,mob:Mob[]):Mob
@@ -50,7 +49,6 @@ public CheckMobProche(hero:Hero,mob:Mob[]):Mob
 //#####################################################################################################################
 public CheckDistMobProche(hero:Hero,mob:Mob):number
 {
-
     let mobSelected!:Mob;
     let distancerepere:number=99;
         let difx=Math.abs(hero.localisator.locAX-mob.localisator.locAX);
@@ -61,13 +59,12 @@ public CheckDistMobProche(hero:Hero,mob:Mob):number
             distancerepere=(difx+dify);
         }
    //console.log("Le mob se trouve a "+distancerepere+" cases");
-   
+
     return distancerepere;
 }
  //#####################################################################################################################
 public CheckDistHeroProche(heroloc:Localisator,mob:Character):number
 {
-
     let HeroSelected!:Hero;
     let distancerepere:number=99;
         let difx=Math.abs(heroloc.locAX-mob.localisator.locAX);
@@ -77,7 +74,7 @@ public CheckDistHeroProche(heroloc:Localisator,mob:Character):number
             distancerepere=(difx+dify);
         }
    //console.log("Le hero se trouve a "+distancerepere+" cases");
-   
+
     return distancerepere;
 }
 //#####################################################################################################################
@@ -91,7 +88,7 @@ public ReadLocalisator(id: number):Localisator {
       complete: () => {}
     })
     //console.log("En sortie de Service : ",result);
-    
+
     return result;
 }
 //#####################################################################################################################
@@ -107,19 +104,19 @@ public CheckMoveOrientation(AllMove:string,origin : Localisator,destination : Lo
   if(origin.locAX>=destination.locAX)AllMove=AllMove.replace("e","");
   if(origin.locAX<=destination.locAX)AllMove=AllMove.replace("w","");
   if(origin.locAY>=destination.locAY)AllMove=AllMove.replace("s","");
-  if(origin.locAY<=destination.locAY)AllMove=AllMove.replace("n","");  
+  if(origin.locAY<=destination.locAY)AllMove=AllMove.replace("n","");
   return AllMove
 }
 //#####################################################################################################################
 public CheckMoveColision(character:Character,AllMove:string,planet : Planet):string{
 
   //Aide pour calcul des colisions dans le tableau d areas :    planet.Areas.map(a => a.localisator).find( a => a.locAX == 1 && a.locAY ==2)
- 
+
   //on check l ouest
   planet.Areas.forEach(element => {
       if((element.localisator.locAX==character.localisator.locAX-1)&&(element.localisator.locAY==character.localisator.locAY))
       {
-          if(element.reachable==false) 
+          if(element.reachable==false)
               {
                   //console.log("Il y a un element a l ouest qui est infranchissable");
                   AllMove=AllMove.replace("w","");
@@ -129,28 +126,28 @@ public CheckMoveColision(character:Character,AllMove:string,planet : Planet):str
   //on check l est
       if((element.localisator.locAX==character.localisator.locAX+1)&&(element.localisator.locAY==character.localisator.locAY))
       {
-          if(element.reachable==false) 
+          if(element.reachable==false)
               {
                   //console.log("Il y a un element a l est qui est infranchissable");
                   AllMove=AllMove.replace("e","");
               }
           //else console.log("Il y a un element a l est qui est franchissable");
       }
-  //on check le nord 
+  //on check le nord
       if((element.localisator.locAX==character.localisator.locAX)&&((element.localisator.locAY+1)==character.localisator.locAY))
       {
-          if(element.reachable==false) 
+          if(element.reachable==false)
               {
                   //console.log("Il y a un element au nord qui est infranchissable");
                   AllMove=AllMove.replace("n","");
               }
           //else console.log("Il y a un element au nord qui est franchissable");
-         
+
       }
   //on check le sud
       if((element.localisator.locAX==character.localisator.locAX)&&((element.localisator.locAY-1)==character.localisator.locAY))
       {
-          if(element.reachable==false) 
+          if(element.reachable==false)
               {
                   //console.log("Il y a un element au sud qui est infranchissable");
                   AllMove=AllMove.replace("s","");
@@ -166,7 +163,7 @@ public SelectMove(character:Character,AllMove: string): Localisator {
   let moveok = false;
   let {locAX, locAY} = character.localisator;
 
-   
+
   while (!moveok) {
 
       let SelectedMove = math.RandomNumber(0, AllMove.length - 1);
@@ -211,7 +208,4 @@ public ExecMove(character:Character,LocalisatorTarget: Localisator,planet:Planet
     }
   }
 //#####################################################################################################################
-
-
-
 }

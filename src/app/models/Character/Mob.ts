@@ -30,40 +30,36 @@ export class Mob extends Character {
         let loctarget:Localisator=_characterService.SelectMove(this,"nswe");
         let dist=0;
         dist=_characterService.CheckDistHeroProche(hero.localisator,this);
-        
-        if(dist>1)
-            {                
-                this.info.img="mob1";
 
-                console.log("[MOBZ]=>Le hero est a "+dist+"cases : j avance ");
+        if(dist>1)
+            {
+                this.info.img="mob1";
+                //console.log("[MOBZ]=>Le hero est a "+dist+"cases : j avance ");
                 this.RandomMove(planet,hero.localisator);
             }
-        else 
+        else
             {
-                this.info.img="mob1Strike";
+            this.info.img="mob1Strike";
             _characterService.MobStrike(this,hero)
-            console.log("[MOBZ]=>Le hero est a "+dist+"cases : j n avance pas je Frappe");
-               
+            //console.log("[MOBZ]=>Le hero est a "+dist+"cases : j n avance pas je Frappe");
             }
-
-            
     }
 
-  
+
 /*
     public SelectAction(planet:Planet,_characterService:CharacterService){
         let dist=0;
         dist=_characterService.CheckDistHeroProche(hero.localisator,this);
-        
+
         // console.log(`Dist => ${dist}`)
         if(dist>1)
-            {                
+            {
                 // console.log("[MOBZ]=>Le hero est a "+dist+"cases : j avance ");
                 //_characterService.ExecMove(this,loctarget,planet);
                 this.RandomMove(planet,)
                 return true;
             }
-        else 
+        else
             {
            _characterService.MobStrike(this,hero);
                 return false;

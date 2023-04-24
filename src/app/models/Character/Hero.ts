@@ -26,11 +26,11 @@ export class Hero extends Character {
         this.power=power;
         this.resist=resist;
     }
-    
+
 
 //#####################################################################################################################
 public SelectAction(planet:Planet,_characterService:CharacterService){
-    //on verifie qui est le mob le plus proche 
+    //on verifie qui est le mob le plus proche
 
     if(this.stat.pv<1)
     {
@@ -50,7 +50,7 @@ public SelectAction(planet:Planet,_characterService:CharacterService){
             this.info.img="LinkStrike";
             this.info.orientation=orientation;
         }
-        else 
+        else
         {
             this.info.strike=false;
             this.info.img="Link";

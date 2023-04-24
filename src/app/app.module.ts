@@ -11,6 +11,7 @@ import { MapComponent } from './components/map/mainland/map.component';
 import { NgForInDirective } from './directive/ng-for-in/ng-for-in.directive';
 import { ShowQuestComponent } from './components/Character/quest/show-quest/show-quest.component';
 import { HomeComponent } from './components/home/home.component';
+import { BattlegroundComponent } from './components/map/battleground/battleground.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
     DungeonComponent,
     NgForInDirective,
     HomeComponent,
+    BattlegroundComponent,
     ],
   imports: [
     BrowserModule,

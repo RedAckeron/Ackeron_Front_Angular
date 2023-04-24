@@ -25,4 +25,43 @@ export class Planet {
         this.Horde=Mobs;
     }
 
+<<<<<<< HEAD
+    public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
+        let TabArea : Area[]=[];
+        
+        _mapRepo.GetMap(IdPlanet).subscribe( {
+          next: (res) => {
+            TabArea=res;
+            return TabArea;
+            },
+          error: () => {},
+          complete: () => {
+            this.Areas=TabArea;
+            //console.log(this.Areas);
+          }
+        })
+        return TabArea;
+      }
+
+    public GetMob(_mobRepo : MobRepoService):Mob[]{
+        
+        _mobRepo.ReadAllOfPlanet(this.IdPlanet).subscribe( {
+        next: (res) => {
+            res.forEach(tabmob => {
+            var mob = new Mob(tabmob.id,tabmob.tsIn,tabmob.info,tabmob.localisator,tabmob.refresh);
+            this.Horde.push(mob);
+             
+            //console.log("objet instanciée : "+mob.id);
+            });
+        return this.Horde;
+        },
+          error: () => {},
+          complete: () => {
+          //this.Mobs=Horde;
+                    }
+        })
+        return this.Horde;
+      }
+=======
+>>>>>>> 330af5b4480ae7251ff00f98c51b165d818afe51
 }

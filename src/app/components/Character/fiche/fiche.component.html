@@ -1,12 +1,20 @@
 
 <!-- affichage de l inventaire -->
 
+
+
 <div class="AllComposant">
         <div class="BoxContainer">Information
                 <div class="BoxAll">
                         Name:
-                        
-                        
+                        <div *ngIf="!Inventory">
+                          <p>Chargement en cours...</p>
+                        </div>
+
+                        <div *ngIf="Inventory">
+                          <p>dATA OK</p>
+                        </div>
+
                 </div>
         </div>
         <div class="BoxContainer">Statistique
@@ -17,8 +25,16 @@
         </div>
         <div class="BoxContainer">Inventaire
                 <div class="BoxAll">
+                  <div *ngIf="(Inventory |async)?.length ==0">
+                    <p>Chargement en cours...</p>
+                  </div>
                         <div class="InventoryBoxCase" *ngFor="let item of this.Inventory |async"><img src="/assets/gif/{{item.img}}" width={{32}} alt="{{item.name}}">
-                                <div class="InventoryBoxCaseQt">{{item.qt}}</div>
+
+
+
+
+
+                          <div class="InventoryBoxCaseQt">{{item.qt}}</div>
                         </div>
                 </div>
         </div>

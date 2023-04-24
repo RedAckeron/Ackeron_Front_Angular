@@ -1,16 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { observable, Observable } from 'rxjs';
-import { Mob } from 'src/app/models/Character/Mob';
-import { Info } from 'src/app/models/Info.model';
-import { Localisator } from 'src/app/models/Localisator';
+import { Hero } from 'src/app/models/Character/Hero';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MobRepoService {
+export class HeroRepoService {
 
-  private _url: string = "https://localhost:7122/Mob/";
+  private _url: string = "https://localhost:7122/Hero/";
   constructor(private _httpClient: HttpClient) { }
 
 
@@ -28,18 +26,12 @@ export class MobRepoService {
 
   */
 
-<<<<<<< HEAD
-  ReadAllOfPlanet(idPlanet: number): Observable<Mob[]> {
-=======
-    ReadAllOfPlanet(idPlanet: number): Observable<Mob[]> {
->>>>>>> 330af5b4480ae7251ff00f98c51b165d818afe51
-    return this._httpClient.get<Mob[]>(this._url + "ReadAllOfPlanet/" + idPlanet);
+    ReadAllOnPlanet(idPlanet: number): Observable<Hero[]> {
+    return this._httpClient.get<Hero[]>(this._url + "ReadAllOnPlanet/" + idPlanet);
   }
 
-
-
-  GetMob(IdMob: number):Observable<Mob[]>  {
-    return this._httpClient.get<Mob[]>(this._url + "Read/" + IdMob);
+  Read(IdHero: number):Observable<Hero>  {
+    return this._httpClient.get<Hero>(this._url + "Read/" + IdHero);
   }
 
   /*
@@ -47,5 +39,6 @@ export class MobRepoService {
         return this._httpClient.get<Area[]>(this._url + "GetMap/" + IdPlanet);
       }
     */
+
 }
 

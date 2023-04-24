@@ -7,17 +7,17 @@
         <div class="AllMap" [ngStyle]="{'width.px':((256/16)*scale),'height.px':(((160/16))*scale)}">
                 <div>Dungeon Lvl : {{0}}</div>
                 <div class="door_n_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
-                <div class="door_n_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
-                
-                <div class="door_s_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                <div class="door_n_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+
                 <div class="door_s_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
-                
+                <div class="door_s_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+
                 <div class="door_w_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
-                <div class="door_w_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
-                
-                <div class="door_e_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div> 
+                <div class="door_w_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+
                 <div class="door_e_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
-                
+                <div class="door_e_close" [ngStyle]="{'width.px':((48/16)*scale),'height.px':(((20/16))*scale),'left.px':104/16*scale}"></div>
+
                 <div class="RealMap" [ngStyle]="{'width.px':((240/16)*scale),'height.px':(((144/16))*scale),'left.px':8/16*scale,'top.px':8/16*scale}">
                         <div *ngFor="let item of this.planet.Areas">
 
@@ -36,7 +36,7 @@
                         [ngStyle]="{'left.px':this.Hero.localisator.locAX*scale,'top.px': this.Hero.localisator.locAY*scale,'border-radius.px':5}">
                         <img src="/assets/gif/link/{{Hero.info.orientation}}.gif" width={{scale}} alt="Link">
                         </div>
-                        
+
                         <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(7*scale),'top.px':(0*scale)}" (click)="SetTarget(7,0)">7.0</div>
                         <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(0*scale),'top.px':(4*scale)}" (click)="SetTarget(0,4)">0.4</div>
                         <div class="ground_cell" [ngStyle]="{'width.px':scale,'height.px':scale,'left.px':(7*scale),'top.px':(8*scale)}" (click)="SetTarget(7,8)">7.8</div>

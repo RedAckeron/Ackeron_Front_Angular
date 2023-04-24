@@ -10,7 +10,11 @@
     border: solid 1px;
     float: left;
 }
-
+.nodata{
+  width: 500px;
+  height: 500px;
+background-color: red;
+}
 .panel {
     background-color: lightgrey;
     border: solid 1px;
@@ -79,7 +83,7 @@
 
 .BoxMobName{
     font-size: 24px;
-  
+
 }
 .BoxPvMax {
     position: relative;
@@ -152,10 +156,9 @@ height: 0px;
     position: absolute;
     background-image: url('../../../../assets/gif/map/target_green.gif');
     background-size: 100%;
-} 
+}
 .ground_cell:hover{
     position: absolute;
     background-image: url('../../../../assets/gif/map/target.gif');
     background-size: 100%;
     }
-    

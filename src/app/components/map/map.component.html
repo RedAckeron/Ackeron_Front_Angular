@@ -1,0 +1,39 @@
+<div class="all">
+    <div class="panel">
+        <!-- <div>ID:{{planet.Mobs[0].Localisator.locAX}}</div> -->
+
+
+
+        <div *ngIf="AreaTarget!=0">target defini</div>
+        
+        
+        <!-- <div *ngFor="let mob of planet.Mobs">
+            <li>{{mob.info.name}</li>
+        </div> -->
+    </div>
+    <div class="map" [ngStyle]="{'width.px':((planet.MaxX+1)*scale),'height.px':((planet.MaxY+1)*scale),'background-size.px':scale}">
+     <!-- Affichage des elements du decor  -->
+        <div *ngFor="let item of planet.Areas">
+            <div class="MapElement"[ngStyle]="{'left.px':item.localisator.locAX*scale,'top.px': item.localisator.locAY*scale}">
+                <div (click)="SetTarget(item.idArea)">
+                <img src="/assets/gif/map/{{item.imgItem}}" width={{scale}} alt="{{item.name}}">
+                </div>
+            </div>
+        </div>
+
+        <!-- Affichage des Hero 
+        <div class="char"  [ngStyle]="{'left.px':this.Hero.Localisator.locAX*scale,'top.px': this.Hero.Localisator.locAY*scale,'border-radius.px':5}"><img src="/assets/gif/link/{{Hero.Orientation}}.gif" width={{scale}} alt="Link"></div>
+         -->
+        <!-- Affichage des mobs  -->
+        
+        
+        
+        <div *ngFor="let mob of planet.Horde">
+            <div (click)="SetTarget(mob.localisator.locAId)" class="char" 
+            [ngStyle]="{'left.px':mob.localisator.locAX*scale,'top.px': mob.localisator.locAY*scale,'border-radius.px':5}">
+            <img src="/assets/gif/mob/{{mob.info.img}}/{{mob.info.orientation}}.gif" width={{scale}} 
+            alt="{{mob.info.name}}">
+            </div>
+        </div>
+    </div>
+</div>
