@@ -2,7 +2,7 @@
         display: flex;
         flex-direction: column;
     }
-    
+
 .panel {
         background-color: lightgrey;
         border: solid 1px;
@@ -13,12 +13,12 @@
     .AllMap{
         //background-color: rgb(132, 132, 132);
         position: relative;
-        background-color: rgb(46, 136, 131);
+        background-color: rgb(88, 155, 33);
         background-image: url('../../../../assets/gif/map/dungeon/bground.gif');
         float: left;
         background-size: 100%;
         }
-        
+
 .RealMap{
         position:absolute ;
 }
@@ -46,11 +46,11 @@
 .door_n_open{
         position:absolute ;
         background-image: url('../../../../assets/gif/map/dungeon/door_n_open.gif');
-        background-size: 100%;   
+        background-size: 100%;
 }
 .door_n_close{
         position:absolute ;
         background-image: url('../../../../assets/gif/map/dungeon/door_n_close.gif');
-        background-size: 100%;   
+        background-size: 100%;
 }
 

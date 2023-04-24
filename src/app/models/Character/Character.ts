@@ -35,12 +35,12 @@ export abstract class Character {
 
     //#####################################################################################################################
     public RandomMove(planet: Planet,heroLocalisator:Localisator) {
-        
+
         this.info.status="move";
-        let AllMove:string="nswe";//on remet les 4 directions possible 
-        
+        let AllMove:string="nswe";//on remet les 4 directions possible
+
         AllMove=this._characterService.CheckMoveBorder(this,AllMove,planet);//on retirer des choix possible ceux qui nous enverrais en dehors de la map
-    
+
         AllMove=this._characterService.CheckMoveColision(this,AllMove,planet);
 
         AllMove=this._characterService.CheckMoveOrientation(AllMove,this.localisator,heroLocalisator);//on retirer des choix possible ceux qui nous enverrais loin de notre destination
@@ -48,15 +48,15 @@ export abstract class Character {
         let loctarget:Localisator=this._characterService.SelectMove(this,AllMove);
         let dist=0;
         dist=this._characterService.CheckDistHeroProche(heroLocalisator,this);
-        
+
         // console.log(`Dist => ${dist}`)
         if(dist>1)
-            {                
+            {
                 // console.log("[MOBZ]=>Le hero est a "+dist+"cases : j avance ");
                 this._characterService.ExecMove(this,loctarget,planet);
                 //return true;
             }
-        else 
+        else
             {
            // console.log("[MOBZ]=>Le hero est a "+dist+"cases : j n avance pas je Frappe");
                // return false;
@@ -66,33 +66,33 @@ export abstract class Character {
     public TargetedMove(targetloc : Localisator,planet:Planet){
         this.TargetLocalisator.locAX=targetloc.locAX;
         this.TargetLocalisator.locAY=targetloc.locAY;
-       
+
             if((this.TargetLocalisator.locAX==this.localisator.locAX)&&(this.TargetLocalisator.locAY==this.localisator.locAY)){
                 this.info.status="idle";
             }
             else this.info.status="move";
-                
+
                 //this.status="move";
-                let AllMove:string="nswe";//on remet les 4 directions possible 
+                let AllMove:string="nswe";//on remet les 4 directions possible
                 //console.log("Debut : "+AllMove);
-                
+
                 AllMove=this._characterService.CheckMoveBorder(this,AllMove,planet);//on retirer des choix possible ceux qui nous enverrais en dehors de la map
                 //console.log("Apres check border : "+AllMove);
-            
+
                 AllMove=this._characterService.CheckMoveColision(this,AllMove,planet);
                 //console.log("Apres check Colision : "+AllMove);
-                
+
                 //on retirer des choix possible ceux qui nous enverrais loin de notre destination
                 AllMove=this._characterService.CheckMoveOrientation(AllMove,this.localisator,this.TargetLocalisator);
                 //console.log("Apres check orientation : "+AllMove);
-    
+
                 //on execute le deplacement et on update l api avec la nouvelle localisation
                 let loctarget:Localisator=this._characterService.SelectMove(this,AllMove);
                 //if (this instanceof Hero) {
                     //console.log("Hero => "+ this)
                 this._characterService.ExecMove(this,loctarget,planet);
                 //}
-                
+
                 //on verifie si on se trouve sur une area qui peut faire peter un trigger
                 this._mapService.CheckAreaTrigger(planet);
     }

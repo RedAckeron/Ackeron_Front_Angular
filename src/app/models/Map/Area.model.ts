@@ -1,6 +1,5 @@
 import { Localisator } from "../Localisator";
 
-
 export class Area implements Iterable<any> {
     idArea:number;
     name:string;
