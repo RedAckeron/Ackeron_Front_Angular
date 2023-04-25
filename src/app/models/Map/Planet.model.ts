@@ -25,7 +25,6 @@ export class Planet {
         this.Horde=Mobs;
     }
 
-<<<<<<< HEAD
     public GetMap(IdPlanet: number,_mapRepo:MapPlanetRepoService):Area[]{
         let TabArea : Area[]=[];
         
@@ -48,7 +47,11 @@ export class Planet {
         _mobRepo.ReadAllOfPlanet(this.IdPlanet).subscribe( {
         next: (res) => {
             res.forEach(tabmob => {
-            var mob = new Mob(tabmob.id,tabmob.tsIn,tabmob.info,tabmob.localisator,tabmob.refresh);
+            //var mob = new Mob(tabmob.id,tabmob.tsIn,tabmob.info,tabmob.localisator,tabmob.refresh);
+
+            var mob = new Mob();
+            
+            
             this.Horde.push(mob);
              
             //console.log("objet instanciée : "+mob.id);
@@ -62,6 +65,4 @@ export class Planet {
         })
         return this.Horde;
       }
-=======
->>>>>>> 330af5b4480ae7251ff00f98c51b165d818afe51
 }

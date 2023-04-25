@@ -54,12 +54,11 @@ export class MapComponent implements OnInit {
       this._mobRepo.ReadAllOfPlanet(this.planet.IdPlanet),
       //on rempli le tableau d element avec le retour json de l api
       this._mapRepo.GetMap(this.planet.IdPlanet),
-      this._heroRepo.Read(1)
-    ]) //Récupération d'un ensemble conjoint de donnée
-      .subscribe(([mobs, map,hero]) =>
+      //this._heroRepo.Read(1)
+    ]).subscribe(([mobs, map]) =>
         { //Chaque valeur du tableau correspond à chaque appel du forkjoin
 
-         this.Hero.id=hero.id;//hero Id
+        //this.Hero.id=hero.id;//hero Id
         // this.Hero.tsIn=hero.tsIn,//Ts d insertion en db
         // this.Hero.stat.coolDown= 1000,//cooldown
         // new Info(0, hero.info.name, 0, 0, 0, 0, 0, 'Link', 'n','idle'),
