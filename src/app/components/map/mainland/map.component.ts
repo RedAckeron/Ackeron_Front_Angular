@@ -129,9 +129,15 @@ this.InitActionHero(this.Hero);//on demarre le Hero
   InitActionMob(mob: Mob) {
     //console.log("Planet => "+ mob.stat.coolDown)
     if (mob.stat.timer) {clearInterval(mob.stat.timer)}
+
     mob.stat.timer = setInterval(() => {
-    mob.SelectAction(this.planet,this.Hero,this._characterService);
-    },mob.stat.coolDown || 1000);
+      //si le mob est pas en status mort , on lui permet de choisir une action a accomplir
+    if(mob.info.status!='death') mob.SelectAction(this.planet,this.Hero,this._characterService);
+
+
+    },mob.stat.coolDown || 1000);//on prend comme ref le cooldown et si il existe pas on prend 1000
+
+
     }
  //#####################################################################################################################
   SetMobTarget(IdMob: number) {

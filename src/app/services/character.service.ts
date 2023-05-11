@@ -26,7 +26,7 @@ public MobStrike(mob:Mob,hero:Hero){
     let atq=(mob.stat.strenght+(mob.stat.strenght*(mob.power.eau/100)));
     let def=(hero.stat.defence+(hero.stat.defence*(hero.resist.eau/100)));
     hero.stat.pv-=(atq-def);
-    console.log((atq-def));
+    //console.log((atq-def));
 }
 //#####################################################################################################################
 public CheckMobProche(hero:Hero,mob:Mob[]):Mob
