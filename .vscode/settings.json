@@ -1,0 +1,55 @@
+{
+  // Angular spécifique
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  
+  // Formatage
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  
+  // Performance pour les gros projets
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.git/**": true
+  },
+  
+  // Support des assets de jeu
+  "files.associations": {
+    "*.gif": "image",
+    "*.png": "image",
+    "*.jpg": "image",
+    "*.jpeg": "image",
+    "*.mp3": "audio",
+    "*.wav": "audio",
+    "*.ogg": "audio"
+  },
+  
+  // Autocomplétion améliorée
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+  
+  // Support des spritesheets
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  
+  // Thème recommandé pour le développement de jeux
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "material-icon-theme",
+  
+  // Configuration TypeScript pour les jeux
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.suggest.includeCompletionsForModuleExports": true
+} 

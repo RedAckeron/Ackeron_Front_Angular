@@ -1,8 +1,6 @@
-import { getLocaleEraNames } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { PatternValidator } from '@angular/forms';
-import { concatWith, forkJoin, observable, Observable } from 'rxjs';
-import { Character } from 'src/app/models/Character/Character';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Hero } from 'src/app/models/Character/Hero';
 import { Mob } from 'src/app/models/Character/Mob';
 import { Info } from 'src/app/models/Info.model';
@@ -24,7 +22,7 @@ import { MathService } from 'src/app/services/math.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   Hero: Hero ;
 
   planet = new Planet(1, 'MainLand', 20, 20, [], [], this._mapRepo);
@@ -51,12 +49,23 @@ export class MapComponent implements OnInit {
     //initMove(this.Hero);
     forkJoin([
       //on recupere la liste des mobs de la planet
-      this._mobRepo.ReadAllOfPlanet(this.planet.IdPlanet),
+      this._mobRepo.ReadAllOfPlanet(this.planet.IdPlanet).pipe(
+        catchError(error => {
+          console.error('Erreur lors du chargement des mobs:', error);
+          return of([]);
+        })
+      ),
       //on rempli le tableau d element avec le retour json de l api
-      this._mapRepo.GetMap(this.planet.IdPlanet),
+      this._mapRepo.GetMap(this.planet.IdPlanet).pipe(
+        catchError(error => {
+          console.error('Erreur lors du chargement de la carte:', error);
+          return of([]);
+        })
+      ),
       //this._heroRepo.Read(1)
-    ]).subscribe(([mobs, map]) =>
-        { //Chaque valeur du tableau correspond à chaque appel du forkjoin
+    ]).subscribe({
+      next: ([mobs, map]) => {
+        //Chaque valeur du tableau correspond à chaque appel du forkjoin
 
         //this.Hero.id=hero.id;//hero Id
         // this.Hero.tsIn=hero.tsIn,//Ts d insertion en db
@@ -74,7 +83,8 @@ export class MapComponent implements OnInit {
 
 
         // Pour chaque mob en json créer un objet mob
-        this.planet.Horde = mobs.map(it => new Mob({...it, _characterService: this._characterService}));this.planet.Areas = map;
+        this.planet.Horde = mobs.map(it => new Mob({...it, _characterService: this._characterService}));
+        this.planet.Areas = map;
         //on boucle sur tout les mobs pour les mettre en activiter
         this.planet.Horde.forEach(element => this.InitActionMob(element));
 
@@ -92,9 +102,14 @@ export class MapComponent implements OnInit {
             }
           }
         }
-      })
-this.InitActionHero(this.Hero);//on demarre le Hero
-//console.log("Planet => "+  this.planet.Horde)
+      },
+      error: (error) => {
+        console.error('Erreur générale lors de l\'initialisation:', error);
+      }
+    });
+    
+    this.InitActionHero(this.Hero);//on demarre le Hero
+    //console.log("Planet => "+  this.planet.Horde)
   }
 
 //#####################################################################################################################
@@ -165,15 +180,43 @@ this.InitActionHero(this.Hero);//on demarre le Hero
 //#####################################################################################################################
   strike(IdMob:number)
     {
-      if(this.planet.Horde[IdMob-1].stat.pv<1)
-      {this.planet.Horde[IdMob-1].info.status="death";}
-      else
-      {
-      if(this.Hero.info.strike==false)
-        {
-        this.planet.Horde[IdMob-1].stat.pv-=this.Hero.stat.strenght;
-        this.Hero.info.strike=true;
+      // Vérification de sécurité pour éviter les erreurs d'accès
+      if (!this.planet.Horde || !this.planet.Horde[IdMob-1]) {
+        console.error('Mob non trouvé avec l\'ID:', IdMob);
+        return;
+      }
+
+      const targetMob = this.planet.Horde[IdMob-1];
+      
+      if(targetMob.stat.pv < 1) {
+        targetMob.info.status = "death";
+      } else {
+        if(this.Hero.info.strike == false) {
+          targetMob.stat.pv -= this.Hero.stat.strenght;
+          this.Hero.info.strike = true;
         }
       }
     }
+
+  //#####################################################################################################################
+  ngOnDestroy(): void {
+    // Nettoyage des timers pour éviter les fuites mémoire
+    if (this.Hero && this.Hero.stat.timer) {
+      clearInterval(this.Hero.stat.timer);
+    }
+    
+    // Nettoyage des timers des mobs
+    if (this.planet && this.planet.Horde) {
+      this.planet.Horde.forEach(mob => {
+        if (mob.stat.timer) {
+          clearInterval(mob.stat.timer);
+        }
+      });
+    }
+    
+    // Nettoyage du timer principal du composant
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
 }
